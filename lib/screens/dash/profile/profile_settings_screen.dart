@@ -40,6 +40,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   final TextEditingController numberController = TextEditingController();
   final TextEditingController upiController = TextEditingController();
   final TextEditingController taxController = TextEditingController();
+  final TextEditingController landLineController= TextEditingController();
   String selectedCountry='Select a country';
   String countryFlag= blank;
   List<String> selectedItems = [];
@@ -57,6 +58,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
       cityController.text = prefs.getString('city') ?? '';
       zipController.text = prefs.getString('zip') ?? '';
       numberController.text = prefs.getString('upi') ?? '';
+      landLineController.text=prefs.getString('landLine')??'';
       upiController.text = prefs.getString('number') ?? '';
       taxController.text = prefs.getString('gst') ?? '';
     });
@@ -70,12 +72,13 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     final String city = cityController.text;
     final String zip = zipController.text;
     final String number = numberController.text;
+    final String landLine= landLineController.text;
     final String upi = upiController.text;
     final String gst = taxController.text;
     final String country = selectedCountry;
     final String flag = countryFlag;
 
-    if (name.isNotEmpty && password.isNotEmpty && email.isNotEmpty && address.isNotEmpty && city.isNotEmpty && country.isNotEmpty &&
+    if (landLine.isNotEmpty && name.isNotEmpty && password.isNotEmpty && email.isNotEmpty && address.isNotEmpty && city.isNotEmpty && country.isNotEmpty &&
         zip.isNotEmpty && number.isNotEmpty && upi.isNotEmpty && gst.isNotEmpty && flag.isNotEmpty) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('name', nameController.text);
@@ -88,6 +91,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
       prefs.setString('zip', zip);
       prefs.setString('upi', upi);
       prefs.setString('number', number);
+      prefs.setString('landLine', landLine);
       prefs.setString('gst', gst);
       Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>Profile_screen()));
     }
@@ -369,7 +373,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                     color: theme.scaffoldBackgroundColor,
                     child: TextFormField(
                       keyboardType: TextInputType.number,
-                      controller: addressController,
+                      controller: landLineController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                       ),
