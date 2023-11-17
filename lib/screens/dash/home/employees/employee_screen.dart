@@ -1,0 +1,418 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pocket_pos/utils/images.dart';
+import 'package:pocket_pos/utils/responsive.dart';
+import 'package:pocket_pos/widgets/add_button.dart';
+import 'package:pocket_pos/widgets/edit_button.dart';
+import 'package:pocket_pos/widgets/employee_white_container.dart';
+import 'package:pocket_pos/widgets/my_bottom.dart';
+import 'package:pocket_pos/widgets/textWidgets.dart';
+import 'package:pocket_pos/widgets/text_container.dart';
+
+import '../../../../widgets/appBar_title.dart';
+import '../../../../widgets/authButton.dart';
+import '../../../../widgets/back_button.dart';
+
+class EmployeeScreen extends StatefulWidget {
+  const EmployeeScreen({super.key});
+
+  @override
+  State<EmployeeScreen> createState() => _EmployeeScreenState();
+}
+
+class _EmployeeScreenState extends State<EmployeeScreen> {
+  Screen ? size;
+  bool showAdministratorEditButton = false;
+  bool showManagerEditButton = false;
+  bool showCashierEditButton = false;
+
+
+  @override
+  Widget build(BuildContext context) {
+    size = Screen(MediaQuery.of(context).size);
+    final theme = Theme.of(context);
+    return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
+      appBar: AppBar(
+        backgroundColor: theme.scaffoldBackgroundColor,
+        elevation: 0,
+        leading: PopButton(),
+        title: AppBarTitle(text: 'Employees'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+                padding: EdgeInsets.symmetric(horizontal:20,vertical: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    HintText(text: 'Administrator'),
+                    Row(
+                      children: [
+                        EditButton(onTap: (){
+                          setState(() {
+                            showAdministratorEditButton=true;
+                          });
+                        }),
+                        SizedBox(width: size?.wp(10),),
+                        AddButton(onTap: (){
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: theme.scaffoldBackgroundColor,
+                                title: HintText(text: 'Administrator'),
+                                content: Container(
+                                  height: size?.hp(30),
+                                  child: Column(
+                                    children: [
+                                      WhiteContainer(
+                                        child: TextFormField(
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintText: 'name',
+                                            helperStyle: TextStyle(
+                                                color: theme.hintColor,
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w500
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: size?.hp(2),),
+                                      Row(
+                                        children: [
+                                          HintText(text: 'PIN'),
+                                          Expanded(
+                                            child: TextContainer(
+                                                child: TextFormField(
+                                                  keyboardType: TextInputType.number,
+                                                  decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    hintText: '8888',
+                                                    helperStyle: TextStyle(
+                                                        color: theme.hintColor,
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w500
+                                                    ),
+                                                  ),
+                                                ),
+                                                color: theme.focusColor
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 15),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            AuthButton(
+                                              text: 'Cancel',
+                                              action: () {
+                                                setState(() {
+                                                });
+                                              },
+                                              textColor: theme.primaryColor,
+                                              boxColor: theme.scaffoldBackgroundColor,
+                                              width: size!.wp(30),
+                                            ),
+                                            AuthButton(
+                                              text: 'Save',
+                                              action: () {
+                                                setState(() {
+                                                });
+                                              },
+                                              textColor: theme.highlightColor,
+                                              boxColor: theme.primaryColor,
+                                              width: size!.wp(30),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        })
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(height: size?.hp(2),),
+                WhiteContainer(
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'name',
+                        helperStyle: TextStyle(
+                            color: theme.hintColor,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500
+                        ),
+                      ),
+                    ),
+                ),
+                SizedBox(height: size?.hp(2),),
+                Row(
+                  children: [
+                    HintText(text: 'PIN'),
+                    Expanded(
+                      child: TextContainer(
+                          child: TextFormField(
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: '8888',
+                              helperStyle: TextStyle(
+                                  color: theme.hintColor,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500
+                              ),
+                            ),
+                          ),
+                          color: theme.focusColor
+                      ),
+                    ),
+                  ],
+                ),
+                if(showAdministratorEditButton)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        AuthButton(
+                          text: 'Cancel',
+                          action: () {
+                            setState(() {
+                              showAdministratorEditButton=false;
+                            });
+                          },
+                          textColor: theme.primaryColor,
+                          boxColor: theme.scaffoldBackgroundColor,
+                          width: size!.wp(42),
+                        ),
+                        SizedBox(width: size?.wp(5),),
+                        AuthButton(
+                          text: 'Save',
+                          action: () {
+                            setState(() {
+                              showAdministratorEditButton=false;
+                            });
+                          },
+                          textColor: theme.highlightColor,
+                          boxColor: theme.primaryColor,
+                          width: size!.wp(42),
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+            )
+            ),
+            Divider(
+              color: theme.primaryColor,
+              thickness: 1,
+            ),
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        HintText(text: 'Manager'),
+                        Row(
+                          children: [
+                            EditButton(onTap: (){
+                              setState(() {
+                                showManagerEditButton=true;
+                              });
+                            }),
+                            SizedBox(width: size?.wp(10),),
+                            AddButton(onTap: (){})
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: size?.hp(2),),
+                    WhiteContainer(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'name',
+                          helperStyle: TextStyle(
+                              color: theme.hintColor,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: size?.hp(2),),
+                    Row(
+                      children: [
+                        HintText(text: 'PIN'),
+                        Expanded(
+                          child: TextContainer(
+                              child: TextFormField(
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: '8888',
+                                  helperStyle: TextStyle(
+                                      color: theme.hintColor,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w500
+                                  ),
+                                ),
+                              ),
+                              color: theme.focusColor
+                          ),
+                        ),
+                      ],
+                    ),
+                    if(showManagerEditButton)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AuthButton(
+                              text: 'Cancel',
+                              action: () {
+                                setState(() {
+                                  showManagerEditButton=false;
+                                });
+                              },
+                              textColor: theme.primaryColor,
+                              boxColor: theme.scaffoldBackgroundColor,
+                              width: size!.wp(42),
+                            ),
+                            AuthButton(
+                              text: 'Save',
+                              action: () {
+                                setState(() {
+                                  showManagerEditButton=false;
+                                });
+                              },
+                              textColor: theme.highlightColor,
+                              boxColor: theme.primaryColor,
+                              width: size!.wp(42),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
+                )),
+            Divider(
+              color: theme.primaryColor,
+              thickness: 1,
+            ),
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        HintText(text: 'Cashier'),
+                        Row(
+                          children: [
+                            EditButton(onTap: (){
+                              setState(() {
+                                showCashierEditButton=true;
+                              });
+                            }),
+                            SizedBox(width: size?.wp(10),),
+                            AddButton(onTap: (){})
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: size?.hp(2),),
+                    WhiteContainer(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'name',
+                          helperStyle: TextStyle(
+                              color: theme.hintColor,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: size?.hp(2),),
+                    Row(
+                      children: [
+                        HintText(text: 'PIN'),
+                        Expanded(
+                          child: TextContainer(
+                              child: TextFormField(
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: '8888',
+                                  helperStyle: TextStyle(
+                                      color: theme.hintColor,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w500
+                                  ),
+                                ),
+                              ),
+                              color: theme.focusColor
+                          ),
+                        ),
+                      ],
+                    ),
+                    if(showCashierEditButton)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AuthButton(
+                              text: 'Cancel',
+                              action: () {
+                                setState(() {
+                                  showCashierEditButton=false;
+                                });
+                              },
+                              textColor: theme.primaryColor,
+                              boxColor: theme.scaffoldBackgroundColor,
+                              width: size!.wp(42),
+                            ),
+                            AuthButton(
+                              text: 'Save',
+                              action: () {
+                                setState(() {
+                                  showCashierEditButton=false;
+                                });
+                              },
+                              textColor: theme.highlightColor,
+                              boxColor: theme.primaryColor,
+                              width: size!.wp(42),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
+                )),
+          ],
+        ),
+      ),
+      bottomNavigationBar: MyBottomBar(hasFocus: false, hasFocus2: false, hasFocus3: false, hasFocus4: false, reportSelect: false, scannerSelect: false, homeSelect: false, profile: false),
+    );
+  }
+}
