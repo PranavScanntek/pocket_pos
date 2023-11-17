@@ -311,13 +311,13 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 );
                 }).toList(),
                 onChanged: (String? newValue){
-                setState(() {
-                currencyNotifier.selectedCountry=newValue!;
-                selectedCountry = newValue;
-                countryFlag = countries
-                    .firstWhere((country) => country.name == newValue)
-                    .flagImagePath;
-                });
+                  setState(() {
+                    currencyNotifier.selectedCountry=newValue!;
+                    selectedCountry = newValue;
+                    countryFlag = countries
+                        .firstWhere((country) => country.name == newValue)
+                        .flagImagePath;
+                  });
                 }
                 ),
                 ),
