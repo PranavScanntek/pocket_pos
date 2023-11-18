@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pocket_pos/utils/images.dart';
 import 'package:pocket_pos/utils/responsive.dart';
 
-import '../screens/dash/home/bag_screen.dart';
+import '../../screens/dash/home/bag_screen.dart';
 
 class BagButton extends StatelessWidget {
   Screen ? size;

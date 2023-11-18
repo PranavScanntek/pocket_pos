@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_pos/screens/auth/signUp_screen.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import 'package:pocket_pos/widgets/authButton.dart';
-import 'package:pocket_pos/widgets/textWidgets.dart';
+import 'package:pocket_pos/widgets/buttons/authButton.dart';
+import 'package:pocket_pos/widgets/text/textWidgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/curvedCliper.dart';
-import '../../widgets/auth_field.dart';
+import '../../widgets/containers/auth_field.dart';
 import '../dash/home/home_screen.dart';
 
 class SignInScreen extends StatefulWidget {

@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pocket_pos/screens/dash/profile/profile_settings_screen.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import 'package:pocket_pos/widgets/authButton.dart';
-import 'package:pocket_pos/widgets/back_button.dart';
-import 'package:pocket_pos/widgets/text_container.dart';
+import 'package:pocket_pos/widgets/buttons/authButton.dart';
+import 'package:pocket_pos/widgets/buttons/back_button.dart';
+import 'package:pocket_pos/widgets/containers/text_container.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../helper/provider_helper/currency_provider.dart';
 import '../../../model/country_model.dart';
 import '../../../utils/images.dart';
-import '../../../widgets/appBar_title.dart';
+import '../../../widgets/text/appBar_title.dart';
 import '../../../widgets/my_bottom.dart';
-import '../../../widgets/textWidgets.dart';
+import '../../../widgets/text/textWidgets.dart';
 class Profile_screen extends StatefulWidget {
   const Profile_screen({super.key});
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import 'package:pocket_pos/widgets/add_button.dart';
+import 'package:pocket_pos/widgets/buttons/add_button.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../helper/provider_helper/currency_provider.dart';
 import '../../../../utils/images.dart';
-import '../../../../widgets/appBar_title.dart';
-import '../../../../widgets/authButton.dart';
-import '../../../../widgets/back_button.dart';
+import '../../../../widgets/text/appBar_title.dart';
+import '../../../../widgets/buttons/authButton.dart';
+import '../../../../widgets/buttons/back_button.dart';
 import '../../../../widgets/my_bottom.dart';
 import '../product/add_products_screen.dart';
 

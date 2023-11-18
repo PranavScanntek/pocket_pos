@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_pos/model/product_model.dart';
 import 'package:pocket_pos/screens/dash/home/payment/payment_screen.dart';
-import 'package:pocket_pos/widgets/add_button.dart';
-import 'package:pocket_pos/widgets/decrease_button.dart';
-import 'package:pocket_pos/widgets/delete_button.dart';
+import 'package:pocket_pos/widgets/buttons/add_button.dart';
+import 'package:pocket_pos/widgets/buttons/decrease_button.dart';
+import 'package:pocket_pos/widgets/buttons/delete_button.dart';
 import 'package:provider/provider.dart';
 import '../../../helper/provider_helper/currency_provider.dart';
 import '../../../helper/provider_helper/product_provider.dart';
 import '../../../utils/responsive.dart';
-import '../../../widgets/appBar_title.dart';
-import '../../../widgets/authButton.dart';
-import '../../../widgets/back_button.dart';
+import '../../../widgets/text/appBar_title.dart';
+import '../../../widgets/buttons/authButton.dart';
+import '../../../widgets/buttons/back_button.dart';
 import '../../../widgets/my_bottom.dart';
 
 class BagScreen extends StatefulWidget {

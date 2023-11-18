@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import 'package:pocket_pos/widgets/appBar_title.dart';
-import 'package:pocket_pos/widgets/back_button.dart';
+import 'package:pocket_pos/widgets/text/appBar_title.dart';
+import 'package:pocket_pos/widgets/buttons/back_button.dart';
 
 import '../../../../utils/images.dart';
-import '../../../../widgets/authButton.dart';
+import '../../../../widgets/buttons/authButton.dart';
 import '../../../../widgets/my_bottom.dart';
 
 class CardScreen extends StatefulWidget {

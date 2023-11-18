@@ -5,21 +5,21 @@ import 'package:pocket_pos/screens/dash/home/home_screen.dart';
 import 'package:pocket_pos/screens/dash/home/payment/payment_screen.dart';
 import 'package:pocket_pos/screens/dash/home/available_bags.dart';
 import 'package:pocket_pos/utils/images.dart';
-import 'package:pocket_pos/widgets/add_button.dart';
-import 'package:pocket_pos/widgets/authButton.dart';
-import 'package:pocket_pos/widgets/bag_button.dart';
-import 'package:pocket_pos/widgets/billing_total_card.dart';
-import 'package:pocket_pos/widgets/decrease_button.dart';
-import 'package:pocket_pos/widgets/delete_button.dart';
-import 'package:pocket_pos/widgets/text_container.dart';
+import 'package:pocket_pos/widgets/buttons/add_button.dart';
+import 'package:pocket_pos/widgets/buttons/authButton.dart';
+import 'package:pocket_pos/widgets/buttons/bag_button.dart';
+import 'package:pocket_pos/widgets/containers/billing_total_card.dart';
+import 'package:pocket_pos/widgets/buttons/decrease_button.dart';
+import 'package:pocket_pos/widgets/buttons/delete_button.dart';
+import 'package:pocket_pos/widgets/containers/text_container.dart';
 import 'package:provider/provider.dart';
 
 import '../../../helper/provider_helper/currency_provider.dart';
 import '../../../helper/provider_helper/product_provider.dart';
 import '../../../model/product_model.dart';
 import '../../../utils/responsive.dart';
-import '../../../widgets/appBar_title.dart';
-import '../../../widgets/back_button.dart';
+import '../../../widgets/text/appBar_title.dart';
+import '../../../widgets/buttons/back_button.dart';
 import '../../../widgets/my_bottom.dart';
 
 class OrderDetailsScreen extends StatefulWidget {

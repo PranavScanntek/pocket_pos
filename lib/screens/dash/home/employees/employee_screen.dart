@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pocket_pos/utils/images.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import 'package:pocket_pos/widgets/add_button.dart';
-import 'package:pocket_pos/widgets/edit_button.dart';
-import 'package:pocket_pos/widgets/employee_white_container.dart';
+import 'package:pocket_pos/widgets/buttons/add_button.dart';
+import 'package:pocket_pos/widgets/buttons/edit_button.dart';
+import 'package:pocket_pos/widgets/containers/employee_white_container.dart';
 import 'package:pocket_pos/widgets/my_bottom.dart';
-import 'package:pocket_pos/widgets/textWidgets.dart';
-import 'package:pocket_pos/widgets/text_container.dart';
+import 'package:pocket_pos/widgets/text/textWidgets.dart';
+import 'package:pocket_pos/widgets/containers/text_container.dart';
 
-import '../../../../widgets/appBar_title.dart';
-import '../../../../widgets/authButton.dart';
-import '../../../../widgets/back_button.dart';
+import '../../../../widgets/text/appBar_title.dart';
+import '../../../../widgets/buttons/authButton.dart';
+import '../../../../widgets/buttons/back_button.dart';
 
 class EmployeeScreen extends StatefulWidget {
   const EmployeeScreen({super.key});

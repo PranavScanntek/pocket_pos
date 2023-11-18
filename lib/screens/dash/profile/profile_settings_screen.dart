@@ -5,17 +5,17 @@ import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pocket_pos/screens/dash/profile/profile_screen.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import 'package:pocket_pos/widgets/appBar_title.dart';
+import 'package:pocket_pos/widgets/text/appBar_title.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../helper/provider_helper/currency_provider.dart';
 import '../../../model/country_model.dart';
 import '../../../utils/images.dart';
-import '../../../widgets/authButton.dart';
-import '../../../widgets/back_button.dart';
+import '../../../widgets/buttons/authButton.dart';
+import '../../../widgets/buttons/back_button.dart';
 import '../../../widgets/my_bottom.dart';
-import '../../../widgets/textWidgets.dart';
-import '../../../widgets/text_container.dart';
+import '../../../widgets/text/textWidgets.dart';
+import '../../../widgets/containers/text_container.dart';
 
 class ProfileSettingsScreen extends StatefulWidget {
   const ProfileSettingsScreen({super.key});

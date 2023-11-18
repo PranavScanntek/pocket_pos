@@ -4,14 +4,14 @@ import 'package:pocket_pos/screens/dash/home/payment/card_screen.dart';
 import 'package:pocket_pos/screens/dash/home/payment/payment_screen2.dart';
 import 'package:pocket_pos/utils/images.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import 'package:pocket_pos/widgets/bag_button.dart';
-import 'package:pocket_pos/widgets/payment_option_tile.dart';
+import 'package:pocket_pos/widgets/buttons/bag_button.dart';
+import 'package:pocket_pos/widgets/containers/payment_option_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import '../../../../helper/provider_helper/currency_provider.dart';
 import '../../../../helper/provider_helper/product_provider.dart';
-import '../../../../widgets/appBar_title.dart';
-import '../../../../widgets/back_button.dart';
+import '../../../../widgets/text/appBar_title.dart';
+import '../../../../widgets/buttons/back_button.dart';
 import '../../../../widgets/my_bottom.dart';
 
 class PaymentScreen extends StatefulWidget {

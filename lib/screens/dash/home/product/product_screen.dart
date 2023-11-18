@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pocket_pos/screens/dash/home/product/add_products_screen.dart';
 import 'package:pocket_pos/screens/dash/home/product/product_edit_screen.dart';
-import 'package:pocket_pos/widgets/add_button.dart';
-import 'package:pocket_pos/widgets/edit_button.dart';
+import 'package:pocket_pos/widgets/buttons/add_button.dart';
+import 'package:pocket_pos/widgets/buttons/edit_button.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../helper/provider_helper/currency_provider.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/responsive.dart';
-import '../../../../widgets/appBar_title.dart';
-import '../../../../widgets/back_button.dart';
+import '../../../../widgets/text/appBar_title.dart';
+import '../../../../widgets/buttons/back_button.dart';
 import '../../../../widgets/my_bottom.dart';
 
 class ProductScreen extends StatefulWidget {

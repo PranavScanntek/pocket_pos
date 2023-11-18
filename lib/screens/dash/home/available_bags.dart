@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import 'package:pocket_pos/widgets/appBar_title.dart';
-import 'package:pocket_pos/widgets/back_button.dart';
+import 'package:pocket_pos/widgets/text/appBar_title.dart';
+import 'package:pocket_pos/widgets/buttons/back_button.dart';
 import 'package:provider/provider.dart';
 import '../../../helper/provider_helper/product_provider.dart';
 import '../../../model/product_model.dart';

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pocket_pos/screens/dash/home/category/category_items.dart';
-import 'package:pocket_pos/widgets/add_button.dart';
+import 'package:pocket_pos/widgets/buttons/add_button.dart';
 import 'package:pocket_pos/widgets/my_bottom.dart';
-import 'package:pocket_pos/widgets/text_container.dart';
+import 'package:pocket_pos/widgets/containers/text_container.dart';
 import '../../../../utils/responsive.dart';
-import '../../../../widgets/appBar_title.dart';
-import '../../../../widgets/authButton.dart';
-import '../../../../widgets/back_button.dart';
+import '../../../../widgets/text/appBar_title.dart';
+import '../../../../widgets/buttons/authButton.dart';
+import '../../../../widgets/buttons/back_button.dart';
 import '../product/add_products_screen.dart';
 
 class CategoryScreen extends StatefulWidget {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pocket_pos/utils/responsive.dart';
 
-import '../utils/images.dart';
+import '../../utils/images.dart';
 
 class DecreaseButton extends StatelessWidget {
   late Function() onTap;

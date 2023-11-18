@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import 'package:pocket_pos/widgets/add_button.dart';
-import 'package:pocket_pos/widgets/appBar_title.dart';
-import '../../../../widgets/back_button.dart';
+import 'package:pocket_pos/widgets/buttons/add_button.dart';
+import 'package:pocket_pos/widgets/text/appBar_title.dart';
+import '../../../../widgets/buttons/back_button.dart';
 import '../../../../widgets/my_bottom.dart';
 
 class PrinterScreen extends StatefulWidget {

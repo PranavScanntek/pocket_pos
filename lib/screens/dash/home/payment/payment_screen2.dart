@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import 'package:pocket_pos/widgets/authButton.dart';
+import 'package:pocket_pos/widgets/buttons/authButton.dart';
 import 'package:pocket_pos/widgets/my_bottom.dart';
-import 'package:pocket_pos/widgets/text_container.dart';
+import 'package:pocket_pos/widgets/containers/text_container.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import '../../../../helper/provider_helper/currency_provider.dart';
-import '../../../../widgets/appBar_title.dart';
-import '../../../../widgets/back_button.dart';
-import '../../../../widgets/bag_button.dart';
+import '../../../../widgets/text/appBar_title.dart';
+import '../../../../widgets/buttons/back_button.dart';
+import '../../../../widgets/buttons/bag_button.dart';
 import 'card_screen.dart';
 
 class PaymentScreen2 extends StatefulWidget {

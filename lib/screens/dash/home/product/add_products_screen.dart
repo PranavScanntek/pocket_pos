@@ -4,15 +4,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:pocket_pos/widgets/authButton.dart';
-import 'package:pocket_pos/widgets/textWidgets.dart';
-import 'package:pocket_pos/widgets/text_container.dart';
+import 'package:pocket_pos/widgets/buttons/authButton.dart';
+import 'package:pocket_pos/widgets/text/textWidgets.dart';
+import 'package:pocket_pos/widgets/containers/text_container.dart';
 import 'package:provider/provider.dart';
 import '../../../../helper/provider_helper/currency_provider.dart';
 import '../../../../utils/images.dart';
 import '../../../../utils/responsive.dart';
-import '../../../../widgets/appBar_title.dart';
-import '../../../../widgets/back_button.dart';
+import '../../../../widgets/text/appBar_title.dart';
+import '../../../../widgets/buttons/back_button.dart';
 import '../../../../widgets/my_bottom.dart';
 
 class AddProductsScreen extends StatefulWidget {

@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 
 import '../../../../helper/provider_helper/currency_provider.dart';
 import '../../../../utils/images.dart';
-import '../../../../widgets/appBar_title.dart';
-import '../../../../widgets/authButton.dart';
-import '../../../../widgets/back_button.dart';
+import '../../../../widgets/text/appBar_title.dart';
+import '../../../../widgets/buttons/authButton.dart';
+import '../../../../widgets/buttons/back_button.dart';
 import '../../../../widgets/my_bottom.dart';
 
 class CategoryItems extends StatefulWidget {

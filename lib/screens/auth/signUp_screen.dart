@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:pocket_pos/screens/auth/signIn_screen.dart';
 import 'package:pocket_pos/utils/images.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import 'package:pocket_pos/widgets/auth_field.dart';
+import 'package:pocket_pos/widgets/containers/auth_field.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../helper/provider_helper/currency_provider.dart';
 import '../../model/country_model.dart';
 import '../../utils/curvedCliper.dart';
-import '../../widgets/authButton.dart';
-import '../../widgets/textWidgets.dart';
+import '../../widgets/buttons/authButton.dart';
+import '../../widgets/text/textWidgets.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override

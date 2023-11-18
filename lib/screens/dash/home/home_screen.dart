@@ -4,16 +4,16 @@ import 'package:pocket_pos/screens/dash/home/order_details_screen.dart';
 import 'package:pocket_pos/screens/dash/home/available_bags.dart';
 import 'package:pocket_pos/utils/images.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import 'package:pocket_pos/widgets/bag_button.dart';
-import 'package:pocket_pos/widgets/category_container.dart';
+import 'package:pocket_pos/widgets/buttons/bag_button.dart';
+import 'package:pocket_pos/widgets/containers/category_container.dart';
 import 'package:pocket_pos/widgets/drawer_view.dart';
-import 'package:pocket_pos/widgets/theme_button.dart';
+import 'package:pocket_pos/widgets/buttons/theme_button.dart';
 import 'package:provider/provider.dart';
 import '../../../helper/provider_helper/currency_provider.dart';
 import '../../../helper/provider_helper/product_provider.dart';
-import '../../../widgets/authButton.dart';
+import '../../../widgets/buttons/authButton.dart';
 import '../../../widgets/my_bottom.dart';
-import '../../../widgets/text_container.dart';
+import '../../../widgets/containers/text_container.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

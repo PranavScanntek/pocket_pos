@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../helper/provider_helper/theme_provider.dart';
+import '../../helper/provider_helper/theme_provider.dart';
 
 class ThemedButton extends StatelessWidget {
   @override
