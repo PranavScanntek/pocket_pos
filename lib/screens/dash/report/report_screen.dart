@@ -67,7 +67,17 @@ class _ReportScreenState extends State<ReportScreen> {
         context: context,
         initialDate: selectedDate,
         firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
+        lastDate: DateTime(2101),
+      builder: (context ,child){
+          return Theme(
+              data: Theme.of(context).copyWith(
+                colorScheme: ColorScheme.light(
+                primary: Color.fromRGBO(255, 61, 143, 1),
+              ),
+          ),
+              child: child!);
+      }
+    );
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
@@ -526,8 +536,7 @@ class _ReportScreenState extends State<ReportScreen> {
     ExpansionTile(title: Text(''),
       leading: Inter500(text: 'Profit reports'),
       children: [
-        Padding(padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
+        Column(
             children: [
               Align(
                 alignment: Alignment.centerRight,
@@ -560,7 +569,8 @@ class _ReportScreenState extends State<ReportScreen> {
                 ),
               ),
               SizedBox(height: size?.hp(2),),
-              Row(
+              Padding(padding: EdgeInsets.symmetric(horizontal: 20),
+              child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Inter500(text: 'Day wise report'),
@@ -605,8 +615,9 @@ class _ReportScreenState extends State<ReportScreen> {
                   )
                 ],
               ),
+              ),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 20),
+                margin: EdgeInsets.only(top: 20,bottom: 20,right: 20),
                 width: double.infinity,
                 height: size?.hp(30),
                 child: LineChart(LineChartData(
@@ -658,8 +669,7 @@ class _ReportScreenState extends State<ReportScreen> {
                 )
                 ),
             ],
-          ),
-        )
+          )
       ],
     ),
     ExpansionTile(title: Text(''),
