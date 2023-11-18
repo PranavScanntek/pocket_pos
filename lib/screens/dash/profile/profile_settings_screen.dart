@@ -603,8 +603,9 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 builder: (BuildContext context) {
                 return AlertDialog(
                   backgroundColor: theme.focusColor,
+                contentPadding: EdgeInsets.all(10),
                 content: Container(
-                height: size?.hp(12),
+                height: size?.hp(20),
                 child: Column(
                 children: [
                 Text("Don't forget to remember",
@@ -656,19 +657,26 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 fontWeight: FontWeight.w400
                 ),
                 ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AuthButton(text: 'Cancel',
+                            action: (){
+                              Navigator.pop(context);
+                            },
+                            textColor: theme.primaryColor, boxColor: theme.focusColor, width: size!.wp(29)),
+                        SizedBox(width: size?.wp(4),),
+                        AuthButton(text: 'Confirm', action: (){},
+                            textColor: theme.highlightColor, boxColor: theme.primaryColor, width: size!.wp(29)),
+
+                      ],
+                    ),
+                  ),
                 ],
                 ),
                 ),
-                actions: [
-                AuthButton(text: 'Cancel',
-                action: (){
-                Navigator.pop(context);
-                },
-                textColor: theme.primaryColor, boxColor: theme.focusColor, width: size!.wp(29)),
-                SizedBox(width: size?.wp(3),),
-                AuthButton(text: 'Confirm', action: (){},
-                textColor: theme.highlightColor, boxColor: theme.primaryColor, width: size!.wp(29)),
-                ],
                 );
                 },
                 );

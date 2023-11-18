@@ -53,12 +53,12 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         leading: Builder(
           builder: (BuildContext context) {
-            return IconButton(
-              icon: Icon(
+            return GestureDetector(
+              child: Icon(
                 Icons.menu,
                 color: theme.indicatorColor, // Change the icon color here
               ),
-              onPressed: () {
+              onTap: () {
                 Scaffold.of(context).openDrawer();
               },
             );
@@ -226,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           AuthButton(text: 'Cancel', action: (){
                                             Navigator.pop(context);
                                           }, textColor: theme.primaryColor, boxColor: theme.scaffoldBackgroundColor, width: size!.wp(26)),
-                                          SizedBox(width: size?.wp(3),),
+                                          SizedBox(width: size?.wp(4),),
                                           AuthButton(text: 'Done', action: (){
                                             setState(() {
                                               prdts.amount =  double.tryParse(amountController.text) ?? 0.0;
@@ -249,7 +249,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                        leading: InkWell(
+                        leading: (prdts.amount>0)?
+                        InkWell(
                           onTap: (){
                             setState(() {
                               productProvider.incrementCount(prdts);
@@ -261,12 +262,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: size?.hp(8),
                             fit: BoxFit.fill,
                           ),
+                        ): Image.asset(prdts.image,
+                          width: size?.wp(18),
+                          height: size?.hp(8),
+                          fit: BoxFit.fill,
                         ),
                         trailing: Container(
                           width: size?.wp(25),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
+                              (prdts.count>0)?
                               Text('${prdts.count}',
                                 textAlign: TextAlign.right,
                             style: TextStyle(
@@ -274,7 +280,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               fontWeight: FontWeight.w500,
                               fontSize: MediaQuery.of(context).size.width * 0.04,
                               ),
-                              ),
+                              ):SizedBox(),
                               SizedBox(width: size?.wp(5),),
                               InkWell(
                                 onTap: (){

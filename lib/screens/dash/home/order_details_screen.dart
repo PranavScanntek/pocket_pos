@@ -54,7 +54,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         title: AppBarTitle(text: 'Billing'),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 30),
+            padding: const EdgeInsets.only(right: 22),
             child: BagButton()
           ),
         ],

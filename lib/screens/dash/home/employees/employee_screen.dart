@@ -67,7 +67,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                 backgroundColor: theme.scaffoldBackgroundColor,
                                 title: HintText(text: 'Administrator'),
                                 content: Container(
-                                  height: size?.hp(30),
+                                  height: size?.hp(25),
                                   child: Column(
                                     children: [
                                       WhiteContainer(
@@ -109,7 +109,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                       Padding(
                                         padding: const EdgeInsets.only(top: 15),
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             AuthButton(
                                               text: 'Cancel',
@@ -121,6 +121,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                                               boxColor: theme.scaffoldBackgroundColor,
                                               width: size!.wp(30),
                                             ),
+                                            SizedBox(width: size?.wp(4),),
                                             AuthButton(
                                               text: 'Save',
                                               action: () {
