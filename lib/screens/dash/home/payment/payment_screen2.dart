@@ -408,7 +408,60 @@ class _PaymentScreen2State extends State<PaymentScreen2> {
         padding: EdgeInsets.only(bottom: 10),
         child: Align(
           alignment: Alignment.bottomCenter,
-            child: balanceAmount>0?SizedBox():AuthButton(text: 'Paid', action: (){}, textColor: theme.highlightColor, boxColor: theme.primaryColor, width: size!.wp(89))),
+            child: balanceAmount>0?SizedBox():AuthButton(text: 'Paid', action: (){
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)
+                    ),
+                    title: CircleAvatar(
+                      backgroundColor: Colors.greenAccent,
+                      child: Icon(Icons.check,color: theme.highlightColor,),
+                    ),
+                    content: Container(
+                      height: size?.hp(8),
+                      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 6),
+                      decoration: BoxDecoration(
+                          color: theme.primaryColor,
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Successfully',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    color: theme.highlightColor
+                                ),
+                              ),
+                              Text(' completed',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: theme.highlightColor
+                                ),
+                              )
+                            ],
+                          ),
+                          Text('new sale',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: theme.highlightColor
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            }, textColor: theme.highlightColor, boxColor: theme.primaryColor, width: size!.wp(89))),
       ),
       bottomNavigationBar: MyBottomBar(hasFocus: false, hasFocus2: false, hasFocus3: false, hasFocus4: false, reportSelect: false, scannerSelect: false, homeSelect: false, profile: false),
     );

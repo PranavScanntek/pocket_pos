@@ -64,7 +64,8 @@ class _CardScreenState extends State<CardScreen> {
                 style: TextStyle(
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w500,
-                  fontSize: MediaQuery.of(context).size.width * 0.04,
+                  fontSize: MediaQuery.of(context).size.width * 0.035,
+                  color: theme.hintColor
                 ),
               ),
             ),
@@ -87,6 +88,9 @@ class _CardScreenState extends State<CardScreen> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)
+                      ),
                       title: CircleAvatar(
                         backgroundColor: Colors.greenAccent,
                         child: Icon(Icons.check,color: theme.highlightColor,),
@@ -99,6 +103,7 @@ class _CardScreenState extends State<CardScreen> {
                             borderRadius: BorderRadius.circular(10)
                         ),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,

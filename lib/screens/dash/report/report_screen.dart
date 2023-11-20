@@ -74,6 +74,7 @@ class _ReportScreenState extends State<ReportScreen> {
                 colorScheme: ColorScheme.light(
                 primary: Color.fromRGBO(255, 61, 143, 1),
               ),
+                dialogBackgroundColor: Color.fromRGBO(255, 255, 255, 1),
           ),
               child: child!);
       }
@@ -163,7 +164,7 @@ class _ReportScreenState extends State<ReportScreen> {
                                         color: theme.indicatorColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
-                                        fontSize: MediaQuery.of(context).size.width * 0.04,
+                                        fontSize: MediaQuery.of(context).size.width * 0.035,
                                       ),
                                     ),
                                     SizedBox(width: 10),

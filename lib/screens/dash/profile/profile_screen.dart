@@ -175,6 +175,9 @@ class _Profile_screenState extends State<Profile_screen> {
                               barrierDismissible: false, // user must tap button!
                               builder: (BuildContext context) {
                                 return AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12)
+                                  ),
                                   backgroundColor: theme.focusColor,
                                   contentPadding: EdgeInsets.all(10),
                                   content: Container(

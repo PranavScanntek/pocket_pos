@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pocket_pos/utils/images.dart';
 import 'package:pocket_pos/utils/responsive.dart';
 import 'package:pocket_pos/widgets/buttons/add_button.dart';
 import 'package:pocket_pos/widgets/buttons/edit_button.dart';
-import 'package:pocket_pos/widgets/containers/employee_white_container.dart';
 import 'package:pocket_pos/widgets/my_bottom.dart';
 import 'package:pocket_pos/widgets/text/textWidgets.dart';
 import 'package:pocket_pos/widgets/containers/text_container.dart';
@@ -34,6 +31,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: theme.scaffoldBackgroundColor,
         elevation: 0,
         leading: PopButton(),
@@ -64,25 +62,26 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                                 backgroundColor: theme.scaffoldBackgroundColor,
                                 title: HintText(text: 'Administrator'),
                                 content: Container(
                                   height: size?.hp(25),
                                   child: Column(
                                     children: [
-                                      WhiteContainer(
-                                        child: TextFormField(
-                                          decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            hintText: 'name',
-                                            helperStyle: TextStyle(
-                                                color: theme.hintColor,
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w500
+                                      TextContainer(
+                                          child: TextFormField(
+                                            decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              hintText: 'name',
+                                              helperStyle: TextStyle(
+                                                  color: theme.hintColor,
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w500
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ),
+                                          color: theme.scaffoldBackgroundColor),
                                       SizedBox(height: size?.hp(2),),
                                       Row(
                                         children: [
@@ -147,7 +146,7 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                   ],
                 ),
                 SizedBox(height: size?.hp(2),),
-                WhiteContainer(
+                TextContainer(
                     child: TextFormField(
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -158,8 +157,8 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                             fontWeight: FontWeight.w500
                         ),
                       ),
-                    ),
                 ),
+                    color: theme.scaffoldBackgroundColor),
                 SizedBox(height: size?.hp(2),),
                 Row(
                   children: [
@@ -245,19 +244,19 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                       ],
                     ),
                     SizedBox(height: size?.hp(2),),
-                    WhiteContainer(
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'name',
-                          helperStyle: TextStyle(
-                              color: theme.hintColor,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500
+                    TextContainer(
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'name',
+                            helperStyle: TextStyle(
+                                color: theme.hintColor,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                        color: theme.scaffoldBackgroundColor),
                     SizedBox(height: size?.hp(2),),
                     Row(
                       children: [
@@ -341,19 +340,19 @@ class _EmployeeScreenState extends State<EmployeeScreen> {
                       ],
                     ),
                     SizedBox(height: size?.hp(2),),
-                    WhiteContainer(
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'name',
-                          helperStyle: TextStyle(
-                              color: theme.hintColor,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500
+                    TextContainer(
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'name',
+                            helperStyle: TextStyle(
+                                color: theme.hintColor,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                        color: theme.scaffoldBackgroundColor),
                     SizedBox(height: size?.hp(2),),
                     Row(
                       children: [

@@ -12,6 +12,7 @@ class PinScreen extends StatefulWidget {
 class _PinScreenState extends State<PinScreen> {
   Screen ? size;
   String _correctPin = "1234";
+  FocusNode? _focusNode;
   List<TextEditingController> _otpControllers = List.generate(
     4,
         (index) => TextEditingController(),
@@ -21,9 +22,16 @@ class _PinScreenState extends State<PinScreen> {
   @override
   void initState() {
     super.initState();
+    _focusNode = FocusNode();
+    Future.delayed(Duration.zero, () => FocusScope.of(context).requestFocus(_focusNode));
     for (int i = 0; i < _otpControllers.length; i++) {
       _otpControllers[i].addListener(_onOTPChanged(i));
     }
+  }
+  @override
+  void dispose() {
+    _focusNode!.dispose();
+    super.dispose();
   }
 
   void Function() _onOTPChanged(int index) {

@@ -602,6 +602,9 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 context: context,
                 builder: (BuildContext context) {
                 return AlertDialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)
+                  ),
                   backgroundColor: theme.focusColor,
                 contentPadding: EdgeInsets.all(10),
                 content: Container(

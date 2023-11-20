@@ -5,7 +5,7 @@ import '../../utils/images.dart';
 
 class ProductProvider with ChangeNotifier {
   List<Product> _products = [
-    Product("Chicken\nBiriyani", biriyani,0,130,1),
+    Product("Chicken Biriyani", biriyani,0,130,1),
     Product("Fish", fish, 0, 0,2),
   ];
 

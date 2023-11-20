@@ -182,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListTile(
                         tileColor: theme.focusColor,
                         title: Padding(
-                          padding: EdgeInsets.only(bottom: 10),
+                          padding: EdgeInsets.only(bottom: 5),
                           child: Text(prdts.name,
                             style: TextStyle(
                               fontFamily: 'Inter',
@@ -206,6 +206,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)
+                                  ),
                                   backgroundColor: theme.scaffoldBackgroundColor,
                                   title: Text('Enter amount',style: TextStyle(color: theme.indicatorColor),),
                                   content: TextContainer(

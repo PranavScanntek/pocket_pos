@@ -4,6 +4,7 @@ import 'package:pocket_pos/screens/dash/home/payment/card_screen.dart';
 import 'package:pocket_pos/screens/dash/home/payment/payment_screen2.dart';
 import 'package:pocket_pos/utils/images.dart';
 import 'package:pocket_pos/utils/responsive.dart';
+import 'package:pocket_pos/widgets/buttons/authButton.dart';
 import 'package:pocket_pos/widgets/buttons/bag_button.dart';
 import 'package:pocket_pos/widgets/containers/payment_option_tile.dart';
 import 'package:provider/provider.dart';
@@ -94,136 +95,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
             SizedBox(height: size?.hp(3.5),),
             PaymentOption(text: 'Card', image: card,color: theme.indicatorColor,onPressed: (){
               Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>CardScreen()));
-
-              // showDialog(
-    // context: context,
-    // builder: (BuildContext context) {
-    // return AlertDialog(
-    //   backgroundColor: theme.focusColor,
-    // title: Text('Select card',
-    // style: TextStyle(
-    // fontFamily: 'Inter',
-    // fontWeight: FontWeight.w500
-    // ),
-    // ),
-    // content: Container(
-    // height: size?.hp(17),
-    // child: Column(
-    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    // children: [
-    // Row(
-    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    // children: [
-    // TextButton(
-    // onPressed: (){
-    // enableButton();
-    // },
-    // child: SvgPicture.asset(visa)),
-    // TextButton(
-    // onPressed: (){
-    // enableButton();
-    // },
-    // child: SvgPicture.asset(masterCard)),
-    // TextButton(
-    // onPressed: (){
-    // enableButton();
-    // },
-    // child: SvgPicture.asset(rupay)),
-    // TextButton(
-    // onPressed: (){
-    // enableButton();
-    // },
-    // child: SvgPicture.asset(americanExp)),
-    // ],
-    // ),
-    // Text("Press confirm after the payment\ncompleted in the swiping\nmachine",
-    // textAlign: TextAlign.center,
-    // style: TextStyle(
-    // fontFamily: 'Inter',
-    // fontWeight: FontWeight.w500
-    // ),
-    // ),
-    // ],
-    // ),
-    // ),
-    // actions: [
-    // Padding(
-    //   padding: const EdgeInsets.only(bottom: 10),
-    //   child: Row(
-    //   mainAxisAlignment: MainAxisAlignment.center,
-    //   children: [
-    //   AuthButton(text: 'Cancel',
-    //   action: (){
-    //   Navigator.pop(context);
-    //   },
-    //   textColor: theme.primaryColor, boxColor: theme.focusColor, width: size!.wp(29)),
-    //   SizedBox(width: size?.wp(3),),
-    //   AuthButton(text: 'Confirm', action:(){
-    //   Navigator.pop(context);
-    //   showDialog(
-    //   context: context,
-    //   builder: (BuildContext context) {
-    //   return AlertDialog(
-    //   title: CircleAvatar(
-    //   backgroundColor: Colors.greenAccent,
-    //   child: Icon(Icons.check,color: theme.highlightColor,),
-    //   ),
-    //   content: Container(
-    //   height: size?.hp(8),
-    //   padding: EdgeInsets.symmetric(horizontal: 10,vertical: 6),
-    //   decoration: BoxDecoration(
-    //   color: theme.primaryColor,
-    //   borderRadius: BorderRadius.circular(10)
-    //   ),
-    //   child: Column(
-    //   children: [
-    //   Row(
-    //   mainAxisAlignment: MainAxisAlignment.center,
-    //   children: [
-    //   Text('Successfully',
-    //   textAlign: TextAlign.center,
-    //   style: TextStyle(
-    //   fontFamily: 'Inter',
-    //   fontWeight: FontWeight.w700,
-    //   color: theme.highlightColor
-    //   ),
-    //   ),
-    //   Text(' completed',
-    //   textAlign: TextAlign.center,
-    //   style: TextStyle(
-    //   color: theme.highlightColor
-    //   ),
-    //   )
-    //   ],
-    //   ),
-    //   Text('new sale',
-    //   textAlign: TextAlign.center,
-    //   style: TextStyle(
-    //   color: theme.highlightColor
-    //   ),
-    //   )
-    //   ],
-    //   ),
-    //   ),
-    //   );
-    //   },
-    //   );
-    //   },
-    //   textColor: theme.highlightColor, boxColor:theme.primaryColor, width: size!.wp(29))
-    //   ],
-    //   ),
-    // ),
-    //
-    // ],
-    // );
-    // },
-    // );
             }),
             SizedBox(height: size?.hp(3.5),),
       Container(
         padding: EdgeInsets.symmetric(horizontal: 10,vertical: 4),
         width: double.infinity,
-        alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
           color: theme.scaffoldBackgroundColor,
           border: Border.all(color: theme.primaryColor),
@@ -234,27 +110,49 @@ class _PaymentScreenState extends State<PaymentScreen> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                backgroundColor: theme.highlightColor,
-                title: Container(
-                  height: 220,
-                  width: 220,
-                  child: QrImageView(
-                    data: 'upi://pay?pa=raffitkm31-1@okhdfcbank&am=${widget.totalAmount.toStringAsFixed(currencyNotifier.selectedCountry == 'Bahrain'?3:2)}&pn=Jhon%20Doe&mc=123456&tid=987654321&tr=invoice123&tn=invoice%20Payment',
-                    version: QrVersions.auto,
-                    gapless: false,
-                  ),
+                contentPadding: EdgeInsets.all(2),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)
                 ),
-                content: Text('Scan this code',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Color.fromRGBO(26, 26, 26, 1)
+                backgroundColor: theme.highlightColor,
+                content:
+                Container(
+                  height: size?.hp(53),
+                  width: size?.wp(50),
+                  child: Column(
+                    children: [
+                      QrImageView(
+                        data: 'upi://pay?pa=raffitkm31-1@okhdfcbank&am=${widget.totalAmount.toStringAsFixed(currencyNotifier.selectedCountry == 'Bahrain'?3:2)}&pn=Jhon%20Doe&mc=123456&tid=987654321&tr=invoice123&tn=invoice%20Payment',
+                        version: QrVersions.auto,
+                        gapless: false,
+                      ),
+                      Text('Scan this code',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color.fromRGBO(26, 26, 26, 1)
+                        ),
+                      ),
+                      SizedBox(height: size?.hp(2),),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AuthButton(text: 'Cancel', action: (){}, textColor: theme.primaryColor, boxColor: theme.highlightColor, width: size!.wp(28)),
+                          SizedBox(width: size?.wp(3),),
+                          AuthButton(text: 'Done', action: (){}, textColor: theme.highlightColor, boxColor: theme.primaryColor, width: size!.wp(28))
+                        ],
+                      )
+                    ],
                   ),
                 ),
               );
             },
           );
         },
-            child: SvgPicture.asset(gpay,height: size?.hp(3.5),width: size?.wp(10))),
+            child: Row(
+              children: [
+                SvgPicture.asset(gpay,height: size?.hp(3.5),width: size?.wp(10)),
+              ],
+            )),
       ),
             SizedBox(height: size?.hp(3.5),),
             PaymentOption(text: 'Phonepe', image: phonephe,onPressed: (){
@@ -262,20 +160,38 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    backgroundColor: theme.highlightColor,
-                    title: Container(
-                      height: 220,
-                      width: 220,
-                      child: QrImageView(
-                        data: 'upi://pay?pa=raffitkm31-1@okhdfcbank&am=${widget.totalAmount.toStringAsFixed(currencyNotifier.selectedCountry == 'Bahrain'?3:2)}&pn=Jhon%20Doe&mc=123456&tid=987654321&tr=invoice123&tn=invoice%20Payment',
-                        version: QrVersions.auto,
-                        gapless: false,
-                      ),
+                    contentPadding: EdgeInsets.all(2),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)
                     ),
-                    content: Text('Scan this code',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color.fromRGBO(26, 26, 26, 1)
+                    backgroundColor: theme.highlightColor,
+                    content:
+                    Container(
+                      height: size?.hp(53),
+                      width: size?.wp(50),
+                      child: Column(
+                        children: [
+                          QrImageView(
+                            data: 'upi://pay?pa=raffitkm31-1@okhdfcbank&am=${widget.totalAmount.toStringAsFixed(currencyNotifier.selectedCountry == 'Bahrain'?3:2)}&pn=Jhon%20Doe&mc=123456&tid=987654321&tr=invoice123&tn=invoice%20Payment',
+                            version: QrVersions.auto,
+                            gapless: false,
+                          ),
+                          Text('Scan this code',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Color.fromRGBO(26, 26, 26, 1)
+                            ),
+                          ),
+                          SizedBox(height: size?.hp(2),),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              AuthButton(text: 'Cancel', action: (){}, textColor: theme.primaryColor, boxColor: theme.highlightColor, width: size!.wp(28)),
+                              SizedBox(width: size?.wp(3),),
+                              AuthButton(text: 'Done', action: (){}, textColor: theme.highlightColor, boxColor: theme.primaryColor, width: size!.wp(28))
+                            ],
+                          )
+                        ],
                       ),
                     ),
                   );
@@ -286,7 +202,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10,vertical: 4),
               width: double.infinity,
-              alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
                 color: theme.scaffoldBackgroundColor,
                 border: Border.all(color: theme.primaryColor),
@@ -297,27 +212,49 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      backgroundColor: theme.highlightColor,
-                      title: Container(
-                        height: 220,
-                        width: 220,
-                        child: QrImageView(
-                          data: 'upi://pay?pa=raffitkm31-1@okhdfcbank&am=${widget.totalAmount.toStringAsFixed(currencyNotifier.selectedCountry == 'Bahrain'?3:2)}&pn=Jhon%20Doe&mc=123456&tid=987654321&tr=invoice123&tn=invoice%20Payment',
-                          version: QrVersions.auto,
-                          gapless: false,
-                        ),
+                      contentPadding: EdgeInsets.all(2),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)
                       ),
-                      content: Text('Scan this code',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Color.fromRGBO(26, 26, 26, 1)
+                      backgroundColor: theme.highlightColor,
+                      content:
+                      Container(
+                        height: size?.hp(53),
+                        width: size?.wp(50),
+                        child: Column(
+                          children: [
+                            QrImageView(
+                              data: 'upi://pay?pa=raffitkm31-1@okhdfcbank&am=${widget.totalAmount.toStringAsFixed(currencyNotifier.selectedCountry == 'Bahrain'?3:2)}&pn=Jhon%20Doe&mc=123456&tid=987654321&tr=invoice123&tn=invoice%20Payment',
+                              version: QrVersions.auto,
+                              gapless: false,
+                            ),
+                            Text('Scan this code',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Color.fromRGBO(26, 26, 26, 1)
+                              ),
+                            ),
+                            SizedBox(height: size?.hp(2),),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                AuthButton(text: 'Cancel', action: (){}, textColor: theme.primaryColor, boxColor: theme.highlightColor, width: size!.wp(28)),
+                                SizedBox(width: size?.wp(3),),
+                                AuthButton(text: 'Done', action: (){}, textColor: theme.highlightColor, boxColor: theme.primaryColor, width: size!.wp(28))
+                              ],
+                            )
+                          ],
                         ),
                       ),
                     );
                   },
                 );
               },
-                  child: SvgPicture.asset(paytm,height: size?.hp(3.5),width: size?.wp(10))),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(paytm,height: size?.hp(3.5),width: size?.wp(10)),
+                    ],
+                  )),
             ),
           ],
         ),

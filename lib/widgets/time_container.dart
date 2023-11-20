@@ -26,7 +26,7 @@ class TimeContainer extends StatelessWidget {
           fontWeight: FontWeight.w400,
           color: textColor,
 
-          fontSize: MediaQuery.of(context).size.width * 0.04,
+          fontSize: MediaQuery.of(context).size.width * 0.035,
         ),
       ),
     );

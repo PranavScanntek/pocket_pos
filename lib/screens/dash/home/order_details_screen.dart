@@ -126,7 +126,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
       SizedBox()
       :Container(
         width: double.infinity,
-        height: size?.hp(22),
+        height: size?.hp(20),
         padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
         color: theme.scaffoldBackgroundColor,
         child: Column(
