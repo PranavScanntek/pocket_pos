@@ -17,10 +17,12 @@ class PopButton extends StatelessWidget {
         onPressed: (){
           Navigator.pop(context);
         },
-        icon: SvgPicture.asset(back,
-          height: size?.hp(2),
-          width: size?.wp(4),
-          color: theme.indicatorColor,
+        icon: Container(
+          child: SvgPicture.asset(back,
+            height: size?.hp(2),
+            width: size?.wp(4),
+            color: theme.indicatorColor,
+          ),
         ),
       ),
     );

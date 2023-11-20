@@ -6,7 +6,7 @@ import 'package:pocket_pos/utils/responsive.dart';
 import 'package:pocket_pos/widgets/buttons/back_button.dart';
 import 'package:pocket_pos/widgets/my_bottom.dart';
 import 'package:pocket_pos/widgets/text/inter500.dart';
-import 'package:pocket_pos/widgets/containers/time_container.dart';
+import 'package:pocket_pos/widgets/time_container.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../../model/horiz_bar_model.dart';
 import '../../../model/pie_data.dart';
