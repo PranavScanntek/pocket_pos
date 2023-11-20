@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pocket_pos/model/product_model.dart';
 import 'package:pocket_pos/screens/dash/home/order_details_screen.dart';
 import 'package:pocket_pos/screens/dash/home/available_bags.dart';
 import 'package:pocket_pos/utils/images.dart';
@@ -29,10 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _hasfocus=true;
   bool _hasfocus2=false;
   List<String> name =[''];
-
   List<String> products=[''];
-
   TextEditingController amountController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
     var currencyNotifier = Provider.of<CountryNotifier>(context);
     final productProvider = Provider.of<ProductProvider>(context);
     final product = productProvider.products;
+    List<Product> productList=List.from(product);
     int totalProductCount = product.fold(
         0, (previousValue, product) => previousValue + product.count);
     return Scaffold(
@@ -88,43 +89,23 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 Container(
-                  child:SearchAnchor(
-                      builder: (BuildContext context, SearchController controller) {
-                        return SearchBar(
-                          elevation: MaterialStateProperty.all(3),
-                          shadowColor: MaterialStateProperty.all(theme.shadowColor),
-                          hintText: 'Search',
-                          overlayColor: MaterialStateProperty.all(Colors.white),
-                          hintStyle: MaterialStateProperty.all(TextStyle(fontFamily: 'Inter',fontWeight: FontWeight.w400)),
-                          shape: MaterialStateProperty.all(const ContinuousRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(24)),
-                          )),
-                          controller: controller,
-                          padding: const MaterialStatePropertyAll<EdgeInsets>(
-                              EdgeInsets.symmetric(horizontal: 16.0)),
-                          onTap: () {
-                            controller.openView();
-                          },
-                          onChanged: (_) {
-                            controller.openView();
-                          },
-                          leading: const Icon(Icons.search,color: Color.fromRGBO(41, 41, 41, 0.5),),
-                        );
-                      }, suggestionsBuilder:
-                      (BuildContext context, SearchController controller) {
-                    return List<ListTile>.generate(products.length, (int index) {
-                      final String item =  products[index];
-                      return ListTile(
-                        tileColor: theme.focusColor,
-                        title: Text(item),
-                        onTap: () {
-                          setState(() {
-                            controller.closeView(item);
-                          });
-                        },
-                      );
-                    });
-                  }
+                  height: size?.hp(7.5),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: theme.shadowColor,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide.none
+                      ),
+                      hintText: 'Search',
+                      prefixIcon: Icon(Icons.search,color: theme.hintColor,)
+                    ),
+                    onChanged: (value){
+                      setState(() {
+                        productList=product.where((element) => element.name.toLowerCase().contains(value.toLowerCase())).toList();
+                      });
+                    },
                   ),
                 ),
                 SizedBox(height: size?.hp(2),),
@@ -171,9 +152,9 @@ class _HomeScreenState extends State<HomeScreen> {
             height: size?.hp(60),
             color: theme.scaffoldBackgroundColor,
             child: ListView.builder(
-              itemCount: product.length,
+              itemCount: productList.length,
                 itemBuilder: (BuildContext context,int index){
-                  final prdts = product[index];
+                  final prdts = productList[index];
                   return Padding(
                     padding: const EdgeInsets.only(top:5),
                     child: Container(
