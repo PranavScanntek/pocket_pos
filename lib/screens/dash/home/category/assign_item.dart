@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pocket_pos/utils/responsive.dart';
 import 'package:pocket_pos/widgets/buttons/add_button.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../helper/provider_helper/currency_provider.dart';
 import '../../../../utils/images.dart';
 import '../../../../widgets/text/appBar_title.dart';

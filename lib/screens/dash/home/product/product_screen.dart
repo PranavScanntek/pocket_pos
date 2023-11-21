@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:pocket_pos/helper/provider_helper/product_provider.dart';
 import 'package:pocket_pos/screens/dash/home/product/add_products_screen.dart';
 import 'package:pocket_pos/screens/dash/home/product/product_edit_screen.dart';
 import 'package:pocket_pos/widgets/buttons/add_button.dart';
 import 'package:pocket_pos/widgets/buttons/edit_button.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../helper/provider_helper/currency_provider.dart';
-import '../../../../utils/images.dart';
 import '../../../../utils/responsive.dart';
 import '../../../../widgets/text/appBar_title.dart';
 import '../../../../widgets/buttons/back_button.dart';
@@ -24,15 +22,13 @@ class _ProductScreenState extends State<ProductScreen> {
   Screen ? size;
   List<bool>switchValue = List.generate(2, (index) => false);
 
-  List<String> foodPic=[biriyani,fish];
-  List<String> foodName=['Chicken\nBiriyani','Fish'];
-  List<String> foodPrice=['130',''];
-
   @override
   Widget build(BuildContext context) {
     size = Screen(MediaQuery.of(context).size);
     final theme = Theme.of(context);
     var currencyNotifier = Provider.of<CountryNotifier>(context);
+    var productProvider = Provider.of<ProductProvider>(context);
+    final product=productProvider.products;
     return  Scaffold(
       appBar: AppBar(
         backgroundColor: theme.scaffoldBackgroundColor,
@@ -50,7 +46,7 @@ class _ProductScreenState extends State<ProductScreen> {
         ],
       ),
       body: ListView.builder(
-          itemCount: foodName.length,
+          itemCount: product.length,
           itemBuilder: (BuildContext context,int index) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 5),
@@ -58,7 +54,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 color: theme.focusColor,
                 padding: EdgeInsets.symmetric(horizontal: 5,vertical: 2),
                 child: ListTile(
-                  title: Text(foodName[index],
+                  title: Text(product[index].name,
                     style: TextStyle(
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w400,
@@ -68,7 +64,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           .width * 0.035,
                     ),
                   ),
-                  subtitle: Text('${currencyNotifier.selectedCurrency} ${foodPrice[index]}',
+                  subtitle: Text('${currencyNotifier.selectedCurrency} ${product[index].amount}',
                     style: TextStyle(
                       color: theme.primaryColor,
                       fontFamily: 'Inter',
@@ -79,7 +75,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           .width * 0.045,
                     ),
                   ),
-                  leading: Image.asset(foodPic[index],
+                  leading: Image.asset(product[index].image,
                     width: size?.wp(20),
                     height: size?.hp(8),
                     fit: BoxFit.fill,
