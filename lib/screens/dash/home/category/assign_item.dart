@@ -116,10 +116,7 @@ class _AssignItemToCategoryState extends State<AssignItemToCategory> {
         ),
       ),
         bottomNavigationBar:MyBottomBar(
-          hasFocus: false,
-          hasFocus2: false,
-          hasFocus3: false,
-          hasFocus4: false,
+          hasFocus: false, hasFocus2: false, hasFocus3: false, hasFocus4: false,
         )    );
   }
 }
