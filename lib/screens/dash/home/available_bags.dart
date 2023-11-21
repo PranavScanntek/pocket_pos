@@ -54,7 +54,11 @@ class _AvailableBagScreenState extends State<AvailableBagScreen> {
                 );
               })
       :Center(child: Text('No data',style: TextStyle(color: theme.focusColor),)),
-      bottomNavigationBar: MyBottomBar(hasFocus: false, hasFocus2: false, hasFocus3: false, hasFocus4: false, reportSelect: false, scannerSelect: false, homeSelect: false, profile: false),
-    );
+        bottomNavigationBar:MyBottomBar(
+          hasFocus: false,
+          hasFocus2: false,
+          hasFocus3: false,
+          hasFocus4: false,
+        )    );
   }
 }

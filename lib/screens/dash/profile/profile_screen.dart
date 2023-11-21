@@ -56,10 +56,10 @@ class _Profile_screenState extends State<Profile_screen> {
         title: AppBarTitle(text: 'Profile'),
       ),
       bottomNavigationBar: MyBottomBar(
-        hasFocus: false,homeSelect: false,
-        hasFocus2: false,reportSelect: false,
-        hasFocus3: false,scannerSelect: false,
-        hasFocus4: true,profile: true,
+        hasFocus: false,
+        hasFocus2: false,
+        hasFocus3: false,
+        hasFocus4: true,
       ),
       body: FutureBuilder<SharedPreferences>(
         future: SharedPreferences.getInstance(),

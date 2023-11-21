@@ -409,10 +409,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: MyBottomBar(
-        hasFocus: true,homeSelect: true,
-        hasFocus2: false,reportSelect: false,
-        hasFocus3: false,scannerSelect: false,
-        hasFocus4: false,profile: false,
+        hasFocus: true,
+        hasFocus2: false,
+        hasFocus3: false,
+        hasFocus4: false,
       ),
     );
   }

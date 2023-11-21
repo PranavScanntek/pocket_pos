@@ -351,8 +351,12 @@ class _AddProductsScreenState extends State<AddProductsScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: MyBottomBar(hasFocus: false, hasFocus2: false, hasFocus3: false, hasFocus4: false, reportSelect: false, scannerSelect: false, homeSelect: false, profile: false),
-
+        bottomNavigationBar:MyBottomBar(
+          hasFocus: false,
+          hasFocus2: false,
+          hasFocus3: false,
+          hasFocus4: false,
+        )
     );
   }
 }

@@ -898,10 +898,10 @@ class _ReportScreenState extends State<ReportScreen> {
         ),
       ),
       bottomNavigationBar: MyBottomBar(
-        hasFocus: false,homeSelect: false,
-        hasFocus2: true,reportSelect: true,
-        hasFocus3: false,scannerSelect: false,
-        hasFocus4: false,profile: false,
+        hasFocus: false,
+        hasFocus2: true,
+        hasFocus3: false,
+        hasFocus4: false,
       ),
     );
   }

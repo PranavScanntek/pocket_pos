@@ -142,12 +142,12 @@ class _CardScreenState extends State<CardScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: MyBottomBar(
-        hasFocus: false,homeSelect: false,
-        hasFocus2: false,reportSelect: false,
-        hasFocus3: false,scannerSelect: false,
-        hasFocus4: false,profile: false,
-      ),
+        bottomNavigationBar:MyBottomBar(
+          hasFocus: false,
+          hasFocus2: false,
+          hasFocus3: false,
+          hasFocus4: false,
+        )
     );
   }
 }

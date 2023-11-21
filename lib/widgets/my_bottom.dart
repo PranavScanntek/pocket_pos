@@ -13,19 +13,11 @@ class MyBottomBar extends StatefulWidget {
   late bool hasFocus2;
   late bool hasFocus3;
   late bool hasFocus4;
-  late bool homeSelect;
-  late bool reportSelect;
-  late bool scannerSelect;
-  late bool profile;
   MyBottomBar({
     required this.hasFocus,
     required this.hasFocus2,
     required this.hasFocus3,
     required this.hasFocus4,
-    required this.reportSelect,
-    required this.scannerSelect,
-    required this.homeSelect,
-    required this.profile
 
   });
 
@@ -68,13 +60,9 @@ class _MyBottomBarState extends State<MyBottomBar> {
               Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>HomeScreen()));
               setState(() {
                 widget.hasFocus = !widget.hasFocus;
-                widget.homeSelect=!widget.homeSelect;
                 widget.hasFocus2 = false;
                 widget.hasFocus3 = false;
                 widget.hasFocus4 = false;
-                widget.reportSelect = false;
-                widget.scannerSelect = false;
-                widget.profile = false;
 
               });
             },
@@ -83,7 +71,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
               icon: SvgPicture.asset(home,
                 height: size?.hp(4),
                 width: size?.wp(8),
-                color:  widget.homeSelect?theme.highlightColor:theme.indicatorColor,
+                color:  widget.hasFocus?theme.highlightColor:theme.indicatorColor,
               ),
             ),
           ),
@@ -92,13 +80,9 @@ class _MyBottomBarState extends State<MyBottomBar> {
               Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>ReportScreen()));
               setState(() {
                 widget.hasFocus2= !widget.hasFocus2;
-                widget.reportSelect=!widget.reportSelect;
                 widget.hasFocus = false;
                 widget.hasFocus3 = false;
                 widget.hasFocus4 = false;
-                widget.homeSelect = false;
-                widget.scannerSelect = false;
-                widget.profile = false;
               });
             },
             child: NavigationContainer(
@@ -106,7 +90,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
               icon: SvgPicture.asset(report,
                 height: size?.hp(4),
                 width: size?.wp(8),
-                color: widget.reportSelect?theme.highlightColor:theme.indicatorColor,
+                color: widget.hasFocus2?theme.highlightColor:theme.indicatorColor,
               ),
             ),
           ),
@@ -115,13 +99,10 @@ class _MyBottomBarState extends State<MyBottomBar> {
               _scanBarcode();
               setState(() {
                 widget.hasFocus3= !widget.hasFocus3;
-                widget.scannerSelect=!widget.scannerSelect;
                 widget.hasFocus2 = false;
                 widget.hasFocus = false;
                 widget.hasFocus4 = false;
-                widget.reportSelect = false;
-                widget.homeSelect = false;
-                widget.profile = false;
+
               });
             },
             child: NavigationContainer(
@@ -130,7 +111,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
               icon: SvgPicture.asset(scanner,
                 height: size?.hp(4),
                 width: size?.wp(8),
-                color: widget.scannerSelect?theme.highlightColor:theme.indicatorColor,
+                color: widget.hasFocus3?theme.highlightColor:theme.indicatorColor,
 
               ),
             ),
@@ -140,13 +121,9 @@ class _MyBottomBarState extends State<MyBottomBar> {
               Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>Profile_screen()));
               setState(() {
                 widget.hasFocus4= !widget.hasFocus4;
-                widget.profile=!widget.profile;
                 widget.hasFocus2 = false;
                 widget.hasFocus3 = false;
                 widget.hasFocus = false;
-                widget.reportSelect = false;
-                widget.scannerSelect = false;
-                widget.homeSelect = false;
               });
             },
             child: NavigationContainer(
@@ -154,7 +131,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
               icon: SvgPicture.asset(profile,
                 height: size?.hp(4),
                 width: size?.wp(8),
-                color: widget.profile?theme.highlightColor:theme.indicatorColor,
+                color: widget.hasFocus4?theme.highlightColor:theme.indicatorColor,
               ),
             ),
           ),
