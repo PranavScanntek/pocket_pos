@@ -27,8 +27,6 @@ class _ReportScreenState extends State<ReportScreen> {
   Screen ? size;
   bool _hasfocus=true;
   bool _hasfocus2=false;
-  bool _hasText=true;
-  bool _hasText2=false;
   bool _hasDay= true;
   bool checkedItems = false;
   bool checkedItems2 = false;
@@ -39,6 +37,11 @@ class _ReportScreenState extends State<ReportScreen> {
   bool _hasTax= false;
   String? selectedValue;
   String? selectedValue2;
+  bool hasCash=true;
+  bool hasGpay=false;
+  bool hasCredit= false;
+  bool hasCreditCard= false;
+  int touchedIndex =-1;
 
   TextStyle custom(BuildContext context, double value) {
     return TextStyle(
@@ -103,6 +106,346 @@ class _ReportScreenState extends State<ReportScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            ExpansionTile(title: Text(''),
+              leading: Inter500(text: 'Collection distribution'),
+              children: [
+                Padding(padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Total amount',
+                        style: TextStyle(
+                            color: theme.indicatorColor,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400
+                        ),
+                      ),
+                      SizedBox(height: 2,),
+                      Row(
+                        children: [
+                          Text('365.56',
+                            style: TextStyle(
+                                color: theme.indicatorColor,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600
+                            ),
+                          ),
+                          Text('AED',
+                            style: TextStyle(
+                                color: theme.indicatorColor,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            activeColor: theme.indicatorColor,
+                            checkColor: theme.indicatorColor,
+                            value: checkedItems,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                checkedItems = value!;
+                                checkedItems=true;
+                                checkedItems2=false;
+                                checkedItems3=false;
+                                checkedItems4=false;
+                              });
+                            },
+                          ),
+                          Text('Cash 40%',
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                color: theme.indicatorColor
+                            ),
+                          ),
+                          Checkbox(
+                            activeColor: theme.indicatorColor,
+                            checkColor: theme.indicatorColor,
+                            value: checkedItems2,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                checkedItems2 = value!;
+                                checkedItems=false;
+                                checkedItems2=true;
+                                checkedItems3=false;
+                                checkedItems4=false;
+                              });
+                            },
+                          ),
+                          Text('Google pay 25%',
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                color: theme.indicatorColor
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            activeColor: theme.indicatorColor,
+                            checkColor: theme.indicatorColor,
+                            value: checkedItems3,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                checkedItems3 = value!;
+                                checkedItems=false;
+                                checkedItems2=false;
+                                checkedItems3=true;
+                                checkedItems4=false;
+                              });
+                            },
+                          ),
+                          Text('Card 20%',
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                color: theme.indicatorColor
+                            ),
+                          ),
+                          Checkbox(
+                            activeColor: theme.indicatorColor,
+                            checkColor: theme.indicatorColor,
+                            value: checkedItems4,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                checkedItems4 = value!;
+                                checkedItems=false;
+                                checkedItems2=false;
+                                checkedItems3=false;
+                                checkedItems4=true;
+                              });
+                            },
+                          ),
+                          Text('Credit 15%',
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                color: theme.indicatorColor
+                            ),
+                          ),
+                        ],
+                      ),
+                      Center(
+                        child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              if(checkedItems==true)
+                                Text('Cash\n40 AED',
+                                  textAlign: TextAlign.center,
+                                ),
+                              if(checkedItems2==true)
+                                Text('GooglePay\n25 AED',
+                                  textAlign: TextAlign.center,
+                                ),
+                              if(checkedItems3==true)
+                                Text('Credit Card\n20 AED',
+                                  textAlign: TextAlign.center,
+                                ),
+                              if(checkedItems4==true)
+                                Text('Credit\n15 AED',
+                                  textAlign: TextAlign.center,
+                                ),
+                              Container(
+                                alignment: Alignment.topCenter,
+                                padding: EdgeInsets.symmetric(horizontal: 60),
+                                height: size?.hp(40),
+                                width: double.infinity,
+                                child: PieChart(
+                                    swapAnimationCurve: Curves.easeInExpo,
+                                    swapAnimationDuration: Duration(milliseconds: 750),
+                                    PieChartData(
+                                        pieTouchData: PieTouchData(
+                                          touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                                            setState(() {
+                                              if (!event.isInterestedForInteractions || pieTouchResponse == null || pieTouchResponse.touchedSection == null) {
+                                                touchedIndex = -1;
+                                                return;
+                                              }
+                                              touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
+                                            });
+                                          },
+                                        ),
+                                      sectionsSpace: 10,
+                                        sections: [
+                                          PieChartSectionData(
+                                              radius: 50,
+                                              value: 40,
+                                              title:'40%',
+                                              titleStyle: TextStyle(color: theme.highlightColor),
+                                              color:checkedItems?theme.primaryColor:Color.fromRGBO(255, 43, 133, 0.25)
+
+                                          ),
+                                          PieChartSectionData(
+                                              radius: 50,
+                                              value: 25,
+                                              title:'25%',
+                                              titleStyle: TextStyle(color: theme.highlightColor),
+                                              color: checkedItems2?theme.primaryColor:Color.fromRGBO(255, 43, 133, 0.25)
+                                          ),
+                                          PieChartSectionData(
+                                              radius: 50,
+                                              value: 20,
+                                              title:'20%',
+                                              titleStyle: TextStyle(color: theme.highlightColor),
+                                              color: checkedItems3?theme.primaryColor:Color.fromRGBO(255, 43, 133, 0.25)
+                                          ),
+                                          PieChartSectionData(
+                                              radius: 50,
+                                              value: 15,
+                                              title:'15%',
+                                              titleStyle: TextStyle(color: theme.highlightColor),
+                                              color: checkedItems4?theme.primaryColor:Color.fromRGBO(255, 43, 133, 0.25)
+                                          ),
+                                        ]
+                                    )
+                                ),
+                              ),
+                            ]
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                              onTap:() {
+                                setState(() {
+                                  hasCash = !hasCash;hasGpay = false;hasCreditCard=false;hasCredit=false;
+                                });
+                              },
+                              child: TimeContainer(text: 'Cash', boxColor: hasCash?theme.primaryColor:theme.focusColor, textColor: hasCash?theme.highlightColor:theme.indicatorColor)),
+                          InkWell(
+                              onTap:() {
+                                setState(() {
+                                  hasGpay = !hasGpay;hasCash = false;hasCreditCard=false;hasCredit=false;
+                                });
+                              },
+                              child: TimeContainer(text: 'Google pay', boxColor: hasGpay?theme.primaryColor:theme.focusColor, textColor: hasGpay?theme.highlightColor:theme.indicatorColor)),
+                          InkWell(
+                              onTap:() {
+                                setState(() {
+                                  hasCreditCard = !hasCreditCard;hasCash = false;hasGpay=false;hasCredit=false;
+                                });
+                              },
+                              child: TimeContainer(text: 'Credit card', boxColor: hasCreditCard?theme.primaryColor:theme.focusColor, textColor: hasCreditCard?theme.highlightColor:theme.indicatorColor)),
+
+                          InkWell(
+                              onTap:() {
+                                setState(() {
+                                  hasCredit = !hasCredit;hasCash = false;hasGpay=false;hasCreditCard=false;
+                                });
+                              },
+                              child: TimeContainer(text: 'Credit', boxColor: hasCredit?theme.primaryColor:theme.focusColor, textColor: hasCredit?theme.highlightColor:theme.indicatorColor)),
+                        ],
+                      ),
+                      SizedBox(height: size?.hp(2),),
+                      Center(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: DataTable(
+                            headingRowColor: MaterialStateProperty.all(theme.primaryColor),
+                            columns: [
+                              DataColumn(label: TableHeader(text: 'Serial No',)),
+                              DataColumn(label: TableHeader(text: 'Invoice No',)),
+                              DataColumn(label: TableHeader(text: 'Amount')),],
+                            rows: [
+                              DataRow(cells: [
+                                DataCell(Text('112358')),
+                                DataCell(Text('36729641053')),
+                                DataCell(Text('500')),
+                              ]),
+                              DataRow(cells: [
+                                DataCell(Text('112359')),
+                                DataCell(Text('36729641043')),
+                                DataCell(Text('260')),
+                              ]),
+                              DataRow(cells: [
+                                DataCell(Text('112458')),
+                                DataCell(Text('36729642053')),
+                                DataCell(Text('300')),
+                              ]),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            ExpansionTile(title: Text(''),
+              leading: Inter500(text: 'Item wise report'),
+              children: [
+                Padding(padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap:(){
+                          _selectDate(context);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text("${selectedDate.toLocal()}".split(' ')[0],
+                              style: TextStyle(
+                                  color: theme.primaryColor,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500
+                              ),
+                            ),
+                            Icon(Icons.keyboard_arrow_down,color: theme.primaryColor,)
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: size?.hp(2),),
+                      Center(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: DataTable(
+                            headingRowColor: MaterialStateProperty.all(theme.primaryColor),
+                            columns: [
+                              DataColumn(label: TableHeader(text: 'Serial No',)),
+                              DataColumn(label: TableHeader(text: 'Item name',)),
+                              DataColumn(label: TableHeader(text: 'Quantity ')),
+                              DataColumn(label: TableHeader(text: 'Amount')),
+                              DataColumn(label: TableHeader(text: 'Total')),
+                            ],
+                            rows: [
+                              DataRow(cells: [
+                                DataCell(Text('112358')),
+                                DataCell(Text('Biriyani')),
+                                DataCell(Text('10')),
+                                DataCell(Text('130')),
+                                DataCell(Text('1300')),
+                              ]),
+                              DataRow(cells: [
+                                DataCell(Text('427654')),
+                                DataCell(Text('Beef Chilli')),
+                                DataCell(Text('9')),
+                                DataCell(Text('90')),
+                                DataCell(Text('810')),
+                              ]),
+                              DataRow(cells: [
+                                DataCell(Text('292715')),
+                                DataCell(Text('Fish')),
+                                DataCell(Text('8')),
+                                DataCell(Text('70')),
+                                DataCell(Text('560')),
+                              ]),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
             ExpansionTile(
               title: Text(''),
               leading: Inter500(text: 'Most active times'),
@@ -117,16 +460,14 @@ class _ReportScreenState extends State<ReportScreen> {
                               onTap: (){
                                 setState(() {
                                   _hasfocus=!_hasfocus;
-                                  _hasText= !_hasText;
                                   _hasfocus2=false;
-                                  _hasText2=false;
                                   _hasDay=true;
                                 });
                                 },
                               child: TimeContainer(
                                 text: 'Hour',
                                 boxColor: _hasfocus?theme.primaryColor:theme.focusColor,
-                                textColor: _hasText?theme.highlightColor:theme.indicatorColor,
+                                textColor: _hasfocus?theme.highlightColor:theme.indicatorColor,
                               )
                           ),
                           SizedBox(width: size?.wp(3),),
@@ -134,16 +475,14 @@ class _ReportScreenState extends State<ReportScreen> {
                               onTap: (){
                                 setState(() {
                                   _hasfocus2=!_hasfocus2;
-                                  _hasText2= !_hasText2;
                                   _hasfocus=false;
-                                  _hasText=false;
                                   _hasDay = false;
                                 });
                                 },
                               child: TimeContainer(
                                 text: 'Days',
                                 boxColor: _hasfocus2?theme.primaryColor:theme.focusColor,
-                                textColor: _hasText2?theme.highlightColor:theme.indicatorColor,
+                                textColor: _hasfocus2?theme.highlightColor:theme.indicatorColor,
                               )
                           ),
                         ],
@@ -671,227 +1010,6 @@ class _ReportScreenState extends State<ReportScreen> {
                 ),
             ],
           )
-      ],
-    ),
-    ExpansionTile(title: Text(''),
-      leading: Inter500(text: 'Item wise report'),
-      children: [
-        Padding(padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap:(){
-                  _selectDate(context);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text("${selectedDate.toLocal()}".split(' ')[0],
-                      style: TextStyle(
-                        color: theme.primaryColor,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w500
-                      ),
-                    ),
-                    Icon(Icons.keyboard_arrow_down,color: theme.primaryColor,)
-                  ],
-                ),
-              ),
-              SizedBox(height: size?.hp(2),),
-              Center(
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: DataTable(
-                    headingRowColor: MaterialStateProperty.all(theme.primaryColor),
-                    columns: [
-                      DataColumn(label: TableHeader(text: 'Barcode',)),
-                      DataColumn(label: TableHeader(text: 'Item name',)),
-                      DataColumn(label: TableHeader(text: 'Item count')),
-                      DataColumn(label: TableHeader(text: 'Cost')),
-                      DataColumn(label: TableHeader(text: 'Price')),
-                    ],
-                    rows: [
-                      DataRow(cells: [
-                        DataCell(Text('112358')),
-                        DataCell(Text('Biriyani')),
-                        DataCell(Text('10')),
-                        DataCell(Text('600')),
-                        DataCell(Text('1000')),
-                      ]),
-                      DataRow(cells: [
-                        DataCell(Text('427654')),
-                        DataCell(Text('Beef Chilli')),
-                        DataCell(Text('9')),
-                        DataCell(Text('900')),
-                        DataCell(Text('1350')),
-                      ]),
-                      DataRow(cells: [
-                        DataCell(Text('292715')),
-                        DataCell(Text('Fish')),
-                        DataCell(Text('8')),
-                        DataCell(Text('480')),
-                        DataCell(Text('800')),
-                      ]),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        )
-      ],
-    ),
-    ExpansionTile(title: Text(''),
-      leading: Inter500(text: 'Collection distribution'),
-      children: [
-        Padding(padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            Text('Total amount',
-              style: TextStyle(
-                  color: theme.indicatorColor,
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w400
-              ),
-            ),
-              Row(
-                children: [
-                  Text('365.56',
-                    style: TextStyle(
-                        color: theme.indicatorColor,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w600
-                    ),
-                  ),
-                  Text('AED',
-                    style: TextStyle(
-                        color: theme.indicatorColor,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w400
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    activeColor: theme.indicatorColor,
-                    checkColor: theme.indicatorColor,
-                    value: checkedItems,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        checkedItems = value!;
-                        isToogle=true;
-                      });
-                      },
-                  ),
-                  Text('Cash 40%',
-                    style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w600,
-                        color: theme.indicatorColor
-                    ),
-                  ),
-                  Checkbox(
-                    activeColor: theme.indicatorColor,
-                    checkColor: theme.indicatorColor,
-                    value: checkedItems2,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        checkedItems2 = value!;
-                        isToogle=true;
-                      });
-                      },
-                  ),
-                  Text('Google pay 25%',
-                    style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w600,
-                        color: theme.indicatorColor
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    activeColor: theme.indicatorColor,
-                    checkColor: theme.indicatorColor,
-                    value: checkedItems3,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        checkedItems3 = value!;
-                        isToogle=true;
-                      });
-                      },
-                  ),
-                  Text('Card 30%',
-                    style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w600,
-                        color: theme.indicatorColor
-                    ),
-                  ),
-                  Checkbox(
-                    activeColor: theme.indicatorColor,
-                    checkColor: theme.indicatorColor,
-                    value: checkedItems4,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        checkedItems4 = value!;
-                        isToogle=true;
-                      });
-                      },
-                  ),
-                  Text('Credit 15%',
-                    style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w600,
-                        color: theme.indicatorColor
-                    ),
-                  ),
-                ],
-              ),
-              Center(
-                child: SfCircularChart(
-                  annotations: <CircularChartAnnotation>[
-                    CircularChartAnnotation(
-                        height: '100%',
-                        width: '100%',
-                        widget: PhysicalModel(
-                          shape: BoxShape.circle,
-                          elevation: 0,
-                          color: theme.scaffoldBackgroundColor,
-                          child: Container(),
-                        )),
-                    CircularChartAnnotation(
-                        widget:  Text('40%',
-                            style: TextStyle(
-                                color: theme.indicatorColor, fontSize: 25)))],
-                              series: <DoughnutSeries<PieData, String>>[DoughnutSeries<PieData, String>(
-                                  dataSource: <PieData>[
-                                    PieData('Cash', 40,theme.primaryColor),
-                                    PieData('Google py', 20,theme.primaryColor),
-                                    PieData('Card', 5,theme.primaryColor),
-                                    PieData('Credit', 25,theme.primaryColor)
-                                  ],
-                                  xValueMapper: (PieData data, _) => data.label,
-                  yValueMapper: (PieData data, _) => data.value,
-                  pointColorMapper: (PieData data, _) => data.color,
-                  innerRadius: '70',
-                  explode:  isToogle,
-                  initialSelectedDataIndexes: const [0,1,2,3],
-                  dataLabelSettings: DataLabelSettings(
-                    isVisible: true,
-                  ),
-                )
-                    ]
-              )
-                )
-                ],
-              ),
-        ),
       ],
     ),
           ],
