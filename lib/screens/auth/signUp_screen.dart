@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:pocket_pos/screens/auth/signIn_screen.dart';
 import 'package:pocket_pos/utils/images.dart';
@@ -41,31 +42,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
     Country(name:'Qatar', flagImagePath:qatar),
   ];
 
-  void _signUp(BuildContext context) async {
-    final String name = nameController.text;
-    final String username = usernameController.text;
-    final String password = passwordController.text;
-    final String email = emailController.text;
-    final String country = selectedCountry;
-    final String flag= countryFlag;
-    if (email.isNotEmpty && name.isNotEmpty && password.isNotEmpty && country.isNotEmpty && username.isNotEmpty && countryFlag.isNotEmpty) {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('name', name);
-      prefs.setString('email', email);
-      prefs.setString('username', username);
-      prefs.setString('password', password);
-      prefs.setString('country', country);
-      prefs.setString('flag', flag);
-      prefs.setBool('isLoggedIn', true);
+  // void _signUp(BuildContext context) async {
+  //   final String name = nameController.text;
+  //   final String username = usernameController.text;
+  //   final String password = passwordController.text;
+  //   final String email = emailController.text;
+  //   final String country = selectedCountry;
+  //   final String flag= countryFlag;
+  //   if (email.isNotEmpty && name.isNotEmpty && password.isNotEmpty && country.isNotEmpty && username.isNotEmpty && countryFlag.isNotEmpty) {
+  //     final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //     prefs.setString('name', name);
+  //     prefs.setString('email', email);
+  //     prefs.setString('username', username);
+  //     prefs.setString('password', password);
+  //     prefs.setString('country', country);
+  //     prefs.setString('flag', flag);
+  //     prefs.setBool('isLoggedIn', true);
+  //
+  //     Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>SignInScreen()));
+  //   } else {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text('Please  fill all fields'),
+  //       ),
+  //     );
+  //   }
 
-      Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>SignInScreen()));
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Please  fill all fields'),
-        ),
-      );
-    }
+  final TextEditingController textEditingController = TextEditingController();
+
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
   }
 
   @override
@@ -206,12 +214,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           color: theme.shadowColor,
                           borderRadius: BorderRadius.circular(10)
                       ),
-                      child: DropdownButton(
-                        iconDisabledColor: Color.fromRGBO(175, 175, 175, 1),
-                        iconEnabledColor: Color.fromRGBO(175, 175, 175, 1),
+                      child: DropdownButton2<String>(
+                        iconStyleData: IconStyleData(
+                          iconDisabledColor: Color.fromRGBO(175, 175, 175, 1),
+                          iconEnabledColor: Color.fromRGBO(175, 175, 175, 1),
+                        ),
                         isExpanded: true,
                         underline: SizedBox(),
-                        elevation: 0,
                         value: currencyNotifier.selectedCountry,
                           items: countries.map((Country country){
                             return DropdownMenuItem<String>(
@@ -236,7 +245,46 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 .firstWhere((country) => country.name == newValue)
                                 .flagImagePath;
                           });
+                          },
+                        dropdownSearchData: DropdownSearchData(
+                          searchController: textEditingController,
+                          searchInnerWidgetHeight: 50,
+                          searchInnerWidget: Container(
+                            height: 50,
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              bottom: 4,
+                              right: 8,
+                              left: 8,
+                            ),
+                            child: AuthField(
+                              child: TextFormField(
+                                expands: true,
+                                maxLines: null,
+                                controller: textEditingController,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  isDense: true,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 8,
+                                  ),
+                                  hintText: 'Search for an item...',
+                                  hintStyle: const TextStyle(fontSize: 12),
+                                ),
+                              ),
+                            ),
+                          ),
+                          searchMatchFn: (item, searchValue) {
+                            return item.value.toString().contains(searchValue);
+                          },
+                        ),
+                        //This to clear the search value when you close the menu
+                        onMenuStateChange: (isOpen) {
+                          if (!isOpen) {
+                            textEditingController.clear();
                           }
+                        },
                     ),
                     ),
                     SizedBox(height: size?.hp(3),),
@@ -244,7 +292,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       width: size!.hp(78),
                       text: 'Register',
                       action: (){
-                        _signUp(context);
+                        Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>SignInScreen()));
+                        // _signUp(context);
                       },
                       textColor: theme.highlightColor,boxColor: theme.primaryColor,),
                     SizedBox(height: size?.hp(1),),

@@ -19,33 +19,33 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void _login(BuildContext context) async {
-    final String username = usernameController.text;
-    final String password = passwordController.text;
-
-    if (username.isNotEmpty && password.isNotEmpty) {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final String? savedEmail = prefs.getString('username');
-      final String? savedPassword = prefs.getString('password');
-
-      if (username == savedEmail && password == savedPassword) {
-        prefs.setBool('isLoggedIn', true);
-        Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>HomeScreen()));
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Please enter valid username and password'),
-          ),
-        );
-      }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Fill all fields'),
-        ),
-      );
-    }
-  }
+  // void _login(BuildContext context) async {
+  //   final String username = usernameController.text;
+  //   final String password = passwordController.text;
+  //
+  //   if (username.isNotEmpty && password.isNotEmpty) {
+  //     final SharedPreferences prefs = await SharedPreferences.getInstance();
+  //     final String? savedEmail = prefs.getString('username');
+  //     final String? savedPassword = prefs.getString('password');
+  //
+  //     if (username == savedEmail && password == savedPassword) {
+  //       prefs.setBool('isLoggedIn', true);
+  //       Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>HomeScreen()));
+  //     } else {
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(
+  //           content: Text('Please enter valid username and password'),
+  //         ),
+  //       );
+  //     }
+  //   } else {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text('Fill all fields'),
+  //       ),
+  //     );
+  //   }
+  // }
 
   void toggleVisibility() {
     setState(() {
@@ -168,7 +168,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     AuthButton(
                       width: size!.hp(78),
                       text: 'Login', action: (){
-                        _login(context);
+                        Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>HomeScreen()));
+                      // _login(context);
                     },
                       textColor: theme.highlightColor,boxColor: theme.primaryColor,),
                     SizedBox(height: size?.hp(1),),

@@ -9,7 +9,6 @@ import 'package:pocket_pos/widgets/text/inter500.dart';
 import 'package:pocket_pos/widgets/time_container.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../../model/horiz_bar_model.dart';
-import '../../../model/pie_data.dart';
 import '../../../widgets/text/appBar_title.dart';
 
 class ReportScreen extends StatefulWidget {

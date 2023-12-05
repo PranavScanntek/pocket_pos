@@ -61,19 +61,21 @@ class _Profile_screenState extends State<Profile_screen> {
         hasFocus3: false,
         hasFocus4: true,
       ),
-      body: FutureBuilder<SharedPreferences>(
-        future: SharedPreferences.getInstance(),
-        builder: (context,snapshot){
-          if(!snapshot.hasData){
-            return Center(child: CircularProgressIndicator(),);
-          }
-          final SharedPreferences=snapshot.data!;
-          final image = SharedPreferences.getString('image');
-          final name= SharedPreferences.getString('name');
-          final email = SharedPreferences.getString('email');
-          final country = SharedPreferences.getString('country');
-          final flag = SharedPreferences.getString('flag');
-            return  Padding(
+      body:
+      // FutureBuilder<SharedPreferences>(
+      //   future: SharedPreferences.getInstance(),
+      //   builder: (context,snapshot){
+      //     if(!snapshot.hasData){
+      //       return Center(child: CircularProgressIndicator(),);
+      //     }
+      //     final SharedPreferences=snapshot.data!;
+      //     final image = SharedPreferences.getString('image');
+      //     final name= SharedPreferences.getString('name');
+      //     final email = SharedPreferences.getString('email');
+      //     final country = SharedPreferences.getString('country');
+      //     final flag = SharedPreferences.getString('flag');
+      //       return
+              Padding(
               padding: const EdgeInsets.symmetric(vertical:10,horizontal: 15),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,12 +86,14 @@ class _Profile_screenState extends State<Profile_screen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Center(
-                          child: image!=null?
-                              CircleAvatar(
-                                radius: 60,
-                                backgroundImage: FileImage(File(image)),
-                              )
-                          :CircleAvatar(
+                          child:
+    // image!=null?
+    //                           CircleAvatar(
+    //                             radius: 60,
+    //                             backgroundImage: FileImage(File(image)),
+    //                           )
+    //                       :
+    CircleAvatar(
                             radius: 60,
                             backgroundColor: theme.hintColor,
                             child: Icon(Icons.person),
@@ -99,17 +103,21 @@ class _Profile_screenState extends State<Profile_screen> {
                         HintText(text: 'Business name'),
                         TextContainer(
                             color: theme.scaffoldBackgroundColor,
-                            child: name!=null?
-                            Text('$name')
-                                :Text('')
+                            child:
+    // name!=null?
+    //                         Text('$name')
+    //                             :
+    Text('')
                         ),
                         SizedBox(height: size?.hp(1),),
                         HintText(text: 'Email'),
                         TextContainer(
                             color: theme.scaffoldBackgroundColor,
-                            child: email!=null?
-                            Text('$email')
-                                :Text('')
+                            child:
+    // email!=null?
+    //                         Text('$email')
+    //                             :
+    Text('')
                         ),
                         SizedBox(height: size?.hp(1),),
                         HintText(text: 'Country'),
@@ -117,13 +125,14 @@ class _Profile_screenState extends State<Profile_screen> {
                             color: theme.scaffoldBackgroundColor,
                             child: Row(
                               children: [
-                                Image.asset('$flag',
-                                  height: 12,
-                                ),
+                                // Image.asset('$flag',
+                                //   height: 12,
+                                // ),
                                 SizedBox(width: 10),
-                                country!=null?
-                                Text('$country',
-                                ):Text('')
+                                // country!=null?
+                                // Text('$country',
+                                // ):
+    Text('')
                               ],
                             )
                         ),
@@ -229,10 +238,7 @@ class _Profile_screenState extends State<Profile_screen> {
                   ),
                 ],
               ),
+              )
             );
-          }
-
-      )
-    );
   }
 }

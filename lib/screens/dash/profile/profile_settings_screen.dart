@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,6 +14,7 @@ import '../../../model/country_model.dart';
 import '../../../utils/images.dart';
 import '../../../widgets/buttons/authButton.dart';
 import '../../../widgets/buttons/back_button.dart';
+import '../../../widgets/containers/auth_field.dart';
 import '../../../widgets/my_bottom.dart';
 import '../../../widgets/text/textWidgets.dart';
 import '../../../widgets/containers/text_container.dart';
@@ -136,6 +138,14 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('image', pickedFile.path);
     }
+  }
+
+  final TextEditingController textEditingController = TextEditingController();
+
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
   }
 
 
@@ -288,12 +298,13 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 color: theme.shadowColor,
                 borderRadius: BorderRadius.circular(10)
                 ),
-                child: DropdownButton(
-                iconDisabledColor: Color.fromRGBO(175, 175, 175, 1),
-                iconEnabledColor: Color.fromRGBO(175, 175, 175, 1),
+                child: DropdownButton2<String>(
+                    iconStyleData: IconStyleData(
+                      iconDisabledColor: Color.fromRGBO(175, 175, 175, 1),
+                      iconEnabledColor: Color.fromRGBO(175, 175, 175, 1),
+                    ),
                 isExpanded: true,
                 underline: SizedBox(),
-                elevation: 0,
                 value: currencyNotifier.selectedCountry,
                 items: countries.map((Country country){
                 return DropdownMenuItem<String>(
@@ -318,7 +329,46 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                         .firstWhere((country) => country.name == newValue)
                         .flagImagePath;
                   });
-                }
+                },
+                  dropdownSearchData: DropdownSearchData(
+                    searchController: textEditingController,
+                    searchInnerWidgetHeight: 50,
+                    searchInnerWidget: Container(
+                      height: 50,
+                      padding: const EdgeInsets.only(
+                        top: 8,
+                        bottom: 4,
+                        right: 8,
+                        left: 8,
+                      ),
+                      child: AuthField(
+                        child: TextFormField(
+                          expands: true,
+                          maxLines: null,
+                          controller: textEditingController,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            isDense: true,
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 8,
+                            ),
+                            hintText: 'Search for an item...',
+                            hintStyle: const TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ),
+                    ),
+                    searchMatchFn: (item, searchValue) {
+                      return item.value.toString().contains(searchValue);
+                    },
+                  ),
+                  //This to clear the search value when you close the menu
+                  onMenuStateChange: (isOpen) {
+                    if (!isOpen) {
+                      textEditingController.clear();
+                    }
+                  },
                 ),
                 ),
                 SizedBox(height: size?.hp(1),),
