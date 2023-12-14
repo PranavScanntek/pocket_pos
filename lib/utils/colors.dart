@@ -22,6 +22,7 @@ final ThemeData darkTheme = ThemeData.dark().copyWith(
   hintColor: Color.fromRGBO(255, 255, 255, 0.25),
   secondaryHeaderColor: Color.fromRGBO(248, 248, 248, 1),
   indicatorColor: Color.fromRGBO(255, 255, 255, 1),
+    disabledColor: Color.fromRGBO(7, 7, 7, .5),
 );
 final lightThemeIcon = Icons.light_mode_outlined; // Replace with your icon
 final darkThemeIcon = Icons.dark_mode_outlined;

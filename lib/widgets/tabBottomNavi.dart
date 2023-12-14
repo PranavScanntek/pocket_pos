@@ -2,30 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pocket_pos/screens/tabView/dash/home/tab_home.dart';
+import 'package:pocket_pos/screens/tabView/dash/report.dart';
 import 'package:pocket_pos/utils/responsive.dart';
-import '../screens/mobileView/dash/home/home_screen.dart';
-import '../screens/mobileView/dash/profile/profile_screen.dart';
-import '../screens/mobileView/dash/report/report_screen.dart';
+
 import '../utils/images.dart';
 
-class MyBottomBar extends StatefulWidget {
+class TabBottomNavi extends StatefulWidget {
   late bool hasFocus;
   late bool hasFocus2;
   late bool hasFocus3;
-  late bool hasFocus4;
-  MyBottomBar({
+  TabBottomNavi({
     required this.hasFocus,
     required this.hasFocus2,
     required this.hasFocus3,
-    required this.hasFocus4,
-
   });
 
   @override
-  State<MyBottomBar> createState() => _MyBottomBarState();
+  State<TabBottomNavi> createState() => _TabBottomNaviState();
 }
 
-class _MyBottomBarState extends State<MyBottomBar> {
+class _TabBottomNaviState extends State<TabBottomNavi> {
+
   Screen ? size;
   String? result;
 
@@ -45,6 +43,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
     setState((){this.result=result;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     size = Screen(MediaQuery.of(context).size);
@@ -53,20 +52,18 @@ class _MyBottomBarState extends State<MyBottomBar> {
       padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
       color: theme.scaffoldBackgroundColor,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           InkWell(
             onTap: (){
-              Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>HomeScreen()));
+              Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>TabHomeScreen()));
               setState(() {
                 widget.hasFocus = !widget.hasFocus;
                 widget.hasFocus2 = false;
                 widget.hasFocus3 = false;
-                widget.hasFocus4 = false;
-
               });
             },
-            child: NavigationContainer(
+            child: TabNavigationContainer(
               color: widget.hasFocus?theme.primaryColor:theme.focusColor,
               icon: SvgPicture.asset(home,
                 height: size?.hp(4),
@@ -77,15 +74,14 @@ class _MyBottomBarState extends State<MyBottomBar> {
           ),
           InkWell(
             onTap: (){
-              Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>ReportScreen()));
+              Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>TabReport()));
               setState(() {
                 widget.hasFocus2= !widget.hasFocus2;
                 widget.hasFocus = false;
                 widget.hasFocus3 = false;
-                widget.hasFocus4 = false;
               });
             },
-            child: NavigationContainer(
+            child: TabNavigationContainer(
               color: widget.hasFocus2?theme.primaryColor:theme.focusColor,
               icon: SvgPicture.asset(report,
                 height: size?.hp(4),
@@ -101,11 +97,9 @@ class _MyBottomBarState extends State<MyBottomBar> {
                 widget.hasFocus3= !widget.hasFocus3;
                 widget.hasFocus2 = false;
                 widget.hasFocus = false;
-                widget.hasFocus4 = false;
-
               });
             },
-            child: NavigationContainer(
+            child: TabNavigationContainer(
               color: widget.hasFocus3?theme.primaryColor:theme.focusColor,
 
               icon: SvgPicture.asset(scanner,
@@ -116,41 +110,22 @@ class _MyBottomBarState extends State<MyBottomBar> {
               ),
             ),
           ),
-          InkWell(
-            onTap: (){
-              Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>Profile_screen()));
-              setState(() {
-                widget.hasFocus4= !widget.hasFocus4;
-                widget.hasFocus2 = false;
-                widget.hasFocus3 = false;
-                widget.hasFocus = false;
-              });
-            },
-            child: NavigationContainer(
-              color: widget.hasFocus4?theme.primaryColor:theme.focusColor,
-              icon: SvgPicture.asset(profile,
-                height: size?.hp(4),
-                width: size?.wp(8),
-                color: widget.hasFocus4?theme.highlightColor:theme.indicatorColor,
-              ),
-            ),
-          ),
         ],
       ),
     );
   }
 }
 
-class NavigationContainer extends StatefulWidget {
+class TabNavigationContainer extends StatefulWidget {
   late Widget icon;
   late Color color;
-  NavigationContainer({required this.icon,required this.color});
+  TabNavigationContainer({required this.icon,required this.color});
 
   @override
-  State<NavigationContainer> createState() => _NavigationContainerState();
+  State<TabNavigationContainer> createState() => _TabNavigationContainerState();
 }
 
-class _NavigationContainerState extends State<NavigationContainer> {
+class _TabNavigationContainerState extends State<TabNavigationContainer> {
 
   Screen ? size;
   @override

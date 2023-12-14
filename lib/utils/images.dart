@@ -29,3 +29,5 @@ const blank= 'assets/images/blank.png';
 const gpay= 'assets/images/gpay.svg';
 const phonephe= 'assets/images/phonepay.svg';
 const paytm= 'assets/images/paytm.svg';
+const shopping='assets/images/shoppintCart.svg';
+const phonepay='assets/images/phonephe.svg';

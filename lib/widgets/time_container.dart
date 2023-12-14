@@ -7,8 +7,9 @@ class TimeContainer extends StatelessWidget {
   late Color textColor;
   late Color boxColor;
   late String text;
+  late double textSize;
 
-  TimeContainer({required this.text,required this.boxColor,required this.textColor});
+  TimeContainer({required this.text,required this.boxColor,required this.textColor,required this.textSize});
 
   Screen ? size;
   @override
@@ -26,7 +27,7 @@ class TimeContainer extends StatelessWidget {
           fontWeight: FontWeight.w400,
           color: textColor,
 
-          fontSize: MediaQuery.of(context).size.width * 0.035,
+          fontSize: MediaQuery.of(context).size.width * textSize,
         ),
       ),
     );

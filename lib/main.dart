@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pocket_pos/helper/provider_helper/currency_provider.dart';
 import 'package:pocket_pos/helper/provider_helper/product_provider.dart';
-import 'package:pocket_pos/screens/auth/welcome_screen.dart';
+import 'package:pocket_pos/layout_screen.dart';
+import 'package:pocket_pos/screens/mobileView/auth/welcome_screen.dart';
 import 'package:provider/provider.dart';
 import 'helper/provider_helper/theme_provider.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       builder: (context) {
         return MaterialApp(
           theme: Provider.of<ThemeProvider>(context).currentTheme,
-            home: WelcomeScreen()
+            home: LayOutScreen()
         );
       },
     );

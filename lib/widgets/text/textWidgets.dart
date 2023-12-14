@@ -3,7 +3,8 @@ import 'package:pocket_pos/utils/responsive.dart';
 
 class AuthPri extends StatelessWidget {
   late String text;
-  AuthPri({required this.text});
+  late double textSize;
+  AuthPri({required this.text,required this.textSize});
 
   Screen ? size;
   @override
@@ -15,7 +16,7 @@ class AuthPri extends StatelessWidget {
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w400,
         color: theme.secondaryHeaderColor,
-        fontSize: MediaQuery.of(context).size.width * 0.031,
+        fontSize: MediaQuery.of(context).size.width * textSize,
       ),
     );
   }
@@ -23,7 +24,8 @@ class AuthPri extends StatelessWidget {
 
 class AuthSec extends StatelessWidget {
   late String text;
-  AuthSec({required this.text});
+  late double textSize;
+  AuthSec({required this.text,required this.textSize});
   Screen ? size;
 
   @override
@@ -33,9 +35,9 @@ class AuthSec extends StatelessWidget {
     return  Text(text,
       style: TextStyle(
           fontFamily: 'Poppins',
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
           color: theme.primaryColor,
-        fontSize: MediaQuery.of(context).size.width * 0.031,
+        fontSize: MediaQuery.of(context).size.width * textSize,
       ),
     );
   }
@@ -43,7 +45,8 @@ class AuthSec extends StatelessWidget {
 
 class HintText extends StatelessWidget {
   late String text;
-  HintText({required this.text});
+  late double textSize;
+  HintText({required this.text,required this.textSize});
   Screen ? size;
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,7 @@ class HintText extends StatelessWidget {
           color: theme.indicatorColor,
           fontFamily: 'Inter',
           fontWeight: FontWeight.w400,
-          fontSize: MediaQuery.of(context).size.width * 0.031,
+          fontSize: MediaQuery.of(context).size.width * textSize,
         ),
       ),
     );

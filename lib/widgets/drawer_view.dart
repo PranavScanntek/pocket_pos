@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_pos/screens/dash/home/category/category_screen.dart';
-import 'package:pocket_pos/screens/dash/home/employees/employee_screen.dart';
-import 'package:pocket_pos/screens/dash/home/printer/printer_screen.dart';
-import 'package:pocket_pos/screens/dash/home/product/product_screen.dart';
 import 'package:pocket_pos/utils/responsive.dart';
+
+import '../screens/mobileView/dash/home/category/category_screen.dart';
+import '../screens/mobileView/dash/home/employees/employee_screen.dart';
+import '../screens/mobileView/dash/home/printer/printer_screen.dart';
+import '../screens/mobileView/dash/home/product/product_screen.dart';
 
 class DrawerView extends StatelessWidget {
   Screen ? size;

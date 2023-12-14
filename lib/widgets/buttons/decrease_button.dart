@@ -18,7 +18,7 @@ class DecreaseButton extends StatelessWidget {
       onPressed: onTap,
       icon: Container(
         height: size?.hp(2),
-        width: size?.wp(3),
+        width: size?.wp(2),
         child: SvgPicture.asset(minus,
           color: theme.indicatorColor,
         ),

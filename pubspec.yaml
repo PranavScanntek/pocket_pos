@@ -103,6 +103,8 @@ flutter:
     - assets/images/gpay.svg
     - assets/images/phonepay.svg
     - assets/images/paytm.svg
+    - assets/images/shoppintCart.svg
+    - assets/images/phonephe.svg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
