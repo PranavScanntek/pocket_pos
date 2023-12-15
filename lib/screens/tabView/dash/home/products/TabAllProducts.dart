@@ -99,7 +99,7 @@ class _TabAllProductsState extends State<TabAllProducts> {
                     crossAxisCount: 4,
                     crossAxisSpacing: 2,
                     mainAxisSpacing: 4,
-                    childAspectRatio: .55,
+                    mainAxisExtent: size?.hp(45)
                   ),
                   itemCount: productList.length,
                   itemBuilder: (BuildContext context,int index){

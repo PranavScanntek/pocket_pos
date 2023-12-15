@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocket_pos/screens/tabView/dash/home/tab_payment.dart';
 import 'package:pocket_pos/utils/responsive.dart';
 import 'package:pocket_pos/widgets/buttons/back_button.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +7,7 @@ import '../../../../helper/provider_helper/currency_provider.dart';
 import '../../../../helper/provider_helper/product_provider.dart';
 import '../../../../model/product_model.dart';
 import '../../../../widgets/buttons/add_button.dart';
+import '../../../../widgets/buttons/authButton.dart';
 import '../../../../widgets/buttons/bag_button.dart';
 import '../../../../widgets/buttons/decrease_button.dart';
 import '../../../../widgets/buttons/delete_button.dart';
@@ -75,6 +77,7 @@ class _TabBagScreenState extends State<TabBagScreen> {
       :Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               width: size?.wp(53),
@@ -146,55 +149,143 @@ class _TabBagScreenState extends State<TabBagScreen> {
               child: widget.selectedProducts==null?
               Center(child: Text('No data',style: TextStyle(color: theme.indicatorColor),))
               : hasSelect==true?
-              ListView.builder(
-                  itemCount: widget.selectedProducts!.length,
-                  itemBuilder: (context,index){
-                    final product=widget.selectedProducts![index];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-                      child: ListTile(
-                        title: Text(widget.selectedProducts![index].name,
-                          style: TextStyle(
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            fontSize: MediaQuery.of(context).size.width * 0.0225,
-                          ),
-                        ),
-                        subtitle: Text('${currencyNotifier.selectedCurrency} ${widget.selectedProducts![index].amount}',
-                          style: TextStyle(
-                            color: theme.primaryColor,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w600,
-                            fontSize: MediaQuery.of(context).size.width * 0.03,
-                          ),
-                        ),
-                        trailing: Container(
-                          width: size?.wp(15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              product.count>=2?
-                              DecreaseButton(onTap: (){
-                                productProvider.decrementCount(product);
-                              }):SizedBox(),
-                              Text('${product.count}',style: TextStyle(
-                                color: theme.indicatorColor,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ListView.builder(
+                    shrinkWrap: true,
+                      itemCount: widget.selectedProducts!.length,
+                      itemBuilder: (context,index){
+                        final product=widget.selectedProducts![index];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10,),
+                          child: ListTile(
+                            title: Text(widget.selectedProducts![index].name,
+                              style: TextStyle(
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w400,
                                 fontSize: MediaQuery.of(context).size.width * 0.0225,
-                              ),),
-                              AddButton(onTap: (){
-                                productProvider.incrementCount(product);
-                              }),
-                              DeleteButton(onTap: (){
-                                productProvider.removeSelectedProduct(index);
-                              }),
+                              ),
+                            ),
+                            subtitle: Text('${currencyNotifier.selectedCurrency} ${widget.selectedProducts![index].amount}',
+                              style: TextStyle(
+                                color: theme.primaryColor,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                fontSize: MediaQuery.of(context).size.width * 0.03,
+                              ),
+                            ),
+                            trailing: Container(
+                              width: size?.wp(15),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  product.count>=2?
+                                  DecreaseButton(onTap: (){
+                                    productProvider.decrementCount(product);
+                                  }):SizedBox(),
+                                  Text('${product.count}',style: TextStyle(
+                                    color: theme.indicatorColor,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: MediaQuery.of(context).size.width * 0.0225,
+                                  ),),
+                                  AddButton(onTap: (){
+                                    productProvider.incrementCount(product);
+                                  }),
+                                  SizedBox(width: size?.wp(2),),
+                                  DeleteButton(onTap: (){
+                                    productProvider.removeSelectedProduct(index);
+                                  }),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                  Container(
+                    width: double.infinity,
+                    height: size?.hp(20),
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 4),
+                    color: theme.scaffoldBackgroundColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          height: size?.hp(10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: theme.scaffoldBackgroundColor,
+                            border: Border.all(color: theme.primaryColor),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Total',
+                                    style: TextStyle(
+                                      color: theme.indicatorColor,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: MediaQuery.of(context).size.width * 0.025,
+                                    ),
+                                  ),
+
+                                  Text('Inclusive tax',
+                                    style: TextStyle(
+                                      color: theme.indicatorColor,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: MediaQuery.of(context).size.width * 0.02,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text('${currencyNotifier.selectedCurrency} ${productProvider.calculateTotalPrice(productProvider.selectedProducts).toStringAsFixed(currencyNotifier.selectedCountry == 'Bahrain'?3:2)}',
+                                style: TextStyle(
+                                  color: theme.indicatorColor,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: MediaQuery.of(context).size.width * 0.0375,
+                                ),
+                              )
                             ],
                           ),
                         ),
-                      ),
-                    );
-                  }):Center(child: Text('No data',style: TextStyle(color: theme.indicatorColor),))
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            AuthButton(
+                                height: size?.hp(6),
+                                textSize: 0.0180,
+                                width: size!.wp(16),
+                                text: 'Back',
+                                action: (){},
+                                textColor: theme.primaryColor,
+                                boxColor: theme.scaffoldBackgroundColor),
+                            AuthButton(
+                                height: size?.hp(6),
+                                width: size!.wp(16),
+                                text: 'Payment',
+                                action: (){
+                                  double totalAmount = productProvider.calculateTotalPrice(productProvider.selectedProducts);
+                                  Navigator.push(context, PageRouteBuilder(pageBuilder: (_,__,___)=>TabPayment(totalAmount: totalAmount,)));
+                                },
+                                textSize: 0.0180,
+                                textColor: theme.highlightColor,
+                                boxColor: theme.primaryColor)
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ):Center(child: Text('No data',style: TextStyle(color: theme.indicatorColor),))
             )
           ],
         ),

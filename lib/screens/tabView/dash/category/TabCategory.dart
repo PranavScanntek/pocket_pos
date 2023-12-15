@@ -166,7 +166,7 @@ class _TabCategoryState extends State<TabCategory> {
                             crossAxisCount: 4,
                             crossAxisSpacing: 2,
                             mainAxisSpacing: 4,
-                            childAspectRatio: .60,
+                              mainAxisExtent: size?.hp(37)
                           ),
                           itemCount: productList.length,
                           itemBuilder: (BuildContext context,int index){

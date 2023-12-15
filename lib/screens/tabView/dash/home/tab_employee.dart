@@ -383,7 +383,10 @@ class _TabEmployeeState extends State<TabEmployee> {
                               });
                             }),
                             SizedBox(width: size?.wp(5),),
-                            AddButton(onTap: (){})
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: AddButton(onTap: (){}),
+                            )
                           ],
                         )
                       ],

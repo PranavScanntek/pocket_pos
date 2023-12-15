@@ -51,6 +51,7 @@ class _TabHomeScreenState extends State<TabHomeScreen> {
         0, (previousValue, product) => previousValue + product.count);
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
+      resizeToAvoidBottomInset: false,
       drawer: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: TabDrawer(),
@@ -167,7 +168,7 @@ class _TabHomeScreenState extends State<TabHomeScreen> {
                         crossAxisCount: 4,
                         crossAxisSpacing: 1,
                         mainAxisSpacing: 2,
-                        childAspectRatio: .45,
+                        mainAxisExtent: size?.hp(35)
                       ),
                       itemCount: productList.length,
                       itemBuilder: (BuildContext context,int index){
