@@ -10,7 +10,7 @@ class LayOutScreen extends StatelessWidget {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxWidth > 600) {
+          if (constraints.maxWidth > 599) {
             return SplashScreen();
           } else {
             return WelcomeScreen();

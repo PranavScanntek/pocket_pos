@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pocket_pos/screens/tabView/dash/home/tab_payment.dart';
+import 'package:pocket_pos/screens/tabView/dash/home/payment/tab_payment.dart';
 import 'package:pocket_pos/utils/responsive.dart';
 import 'package:pocket_pos/widgets/buttons/back_button.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +80,6 @@ class _TabBagScreenState extends State<TabBagScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              width: size?.wp(53),
               child: ListView(
                 children: [
                   Row(
